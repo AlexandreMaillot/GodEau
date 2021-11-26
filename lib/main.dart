@@ -2,7 +2,7 @@ import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'home.dart';
+import 'views/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
