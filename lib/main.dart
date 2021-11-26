@@ -8,7 +8,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Util flameUtil = Util();
   flameUtil.fullScreen();
-  flameUtil.setOrientation(DeviceOrientation.portraitUp);
+  flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
   runApp(const MyApp());
 }
 
