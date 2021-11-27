@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:godeau/constant.dart';
 // import 'package:godeau/controller/level_button.dart';
@@ -36,7 +38,7 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(1.0),
             child: IconButton(
               iconSize: 60,
-                onPressed: () {},
+                onPressed: () {return exit(0);},
                 icon: Icon(Icons.clear_rounded,color: Colors.white,)
 
             ),
