@@ -7,8 +7,7 @@ import 'package:flutter/src/widgets/icon.dart';
 import 'package:godeau/models/god_eau_game.dart';
 import 'package:godeau/controller/spell_button.dart';
 
-class RainSpell implements SpellButton{
-
+class SunSpell implements SpellButton{
   @override
   Icon icon;
 
@@ -16,7 +15,7 @@ class RainSpell implements SpellButton{
   int limitTime;
 
   @override
-  String name = 'Pluie';
+  String name = 'Soleil';
 
   @override
   bool state;
@@ -25,14 +24,13 @@ class RainSpell implements SpellButton{
   // TODO: implement game
   GodEauGame get game => throw UnimplementedError();
 
-  Rect rainSpellRect;
-  Sprite rainSpellSprite;
+  Rect sunSpellRect;
+  Sprite sunSpellSprite;
 
-  RainSpell({game}){
-    //rainSpellRect = Rect.fromLTWH(0, 0, 0, 0);
-    //rainSpellSprite = Sprite('fileName')
+  SunSpell({game}){
+    //sunSpellRect = Rect.fromLTWH(0, 0, 0, 0);
+    //sunSpellSprite = Sprite('fileName')
   }
-
   @override
   void onTap() {
 
@@ -40,14 +38,12 @@ class RainSpell implements SpellButton{
 
   @override
   void render(Canvas canvas) {
-    rainSpellSprite.renderRect(canvas, rainSpellRect);
+    sunSpellSprite.renderRect(canvas, sunSpellRect);
   }
 
   @override
   void update(double t) {
 
   }
-
-
 
 }

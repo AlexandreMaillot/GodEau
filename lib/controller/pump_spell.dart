@@ -1,14 +1,11 @@
-
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
-import 'package:flame/time.dart';
 import 'package:flutter/src/widgets/icon.dart';
-import 'package:godeau/models/god_eau_game.dart';
 import 'package:godeau/controller/spell_button.dart';
+import 'package:godeau/models/god_eau_game.dart';
 
-class RainSpell implements SpellButton{
-
+class PumpSpell implements SpellButton{
   @override
   Icon icon;
 
@@ -16,7 +13,7 @@ class RainSpell implements SpellButton{
   int limitTime;
 
   @override
-  String name = 'Pluie';
+  String name = 'Station de pompage';
 
   @override
   bool state;
@@ -25,22 +22,17 @@ class RainSpell implements SpellButton{
   // TODO: implement game
   GodEauGame get game => throw UnimplementedError();
 
-  Rect rainSpellRect;
-  Sprite rainSpellSprite;
+  Rect pumpSpellRect;
+  Sprite pumpSpellSprite;
 
-  RainSpell({game}){
-    //rainSpellRect = Rect.fromLTWH(0, 0, 0, 0);
-    //rainSpellSprite = Sprite('fileName')
-  }
-
-  @override
-  void onTap() {
-
+  PumpSpell({game}){
+    //pumpSpellRect = Rect.fromLTWH(0, 0, 0, 0);
+    //pumpSpellSprite = Sprite('fileName')
   }
 
   @override
   void render(Canvas canvas) {
-    rainSpellSprite.renderRect(canvas, rainSpellRect);
+    pumpSpellSprite.renderRect(canvas, pumpSpellRect);
   }
 
   @override
@@ -48,6 +40,8 @@ class RainSpell implements SpellButton{
 
   }
 
+  @override
+  void onTap() {
 
-
+  }
 }
