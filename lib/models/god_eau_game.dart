@@ -38,7 +38,7 @@ class GodEauGame extends Game with TapDetector{
 
   Background background;
   Map map;
-  SunSpell sunSpell;
+  // SunSpell sunSpell;
   List<SpellButton> listSpellButton = [];
   GodEauGame(this.environnement){
     initialize();

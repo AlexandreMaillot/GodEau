@@ -91,7 +91,12 @@ class WaterTreatmentSpell implements SpellButton{
 
   @override
   void onTapDown(TapDownDetails details) {
-    print(name);
+    if(!state) {
+      game.resident.updateConsumption(-3);
+      game.environnement.decreaseEcosystemQteFinal(5);
+    } else {
+      game.resident.updateConsumption(3);
+    }
     state = !state;
     print(state);
   }

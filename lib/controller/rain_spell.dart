@@ -99,7 +99,9 @@ class RainSpell implements SpellButton{
         game.resident.updateConsumption(-2);
         game.groundwaterTable.increaseWater(10);
         game.river.increaseWater(10);
+        game.cloud.decreaseWater(20);
         game.wind.isActivated = false;
+        game.listSpellButton[2].state = false;
         state = true;
       } else {
         game.environnement.decreaseEcosystemQteFinal(5);
