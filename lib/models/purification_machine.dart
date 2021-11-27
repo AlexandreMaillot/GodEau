@@ -9,10 +9,10 @@ class PurificationMachine implements Consumer{
   int consumption;
 
   @override
-  int maxQte;
+  int maxQte = 10;
 
   @override
-  int qte;
+  int qte = 0;
 
   final GodEauGame game;
 

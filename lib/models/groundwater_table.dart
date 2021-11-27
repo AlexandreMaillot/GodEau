@@ -20,8 +20,8 @@ class GroundwaterTable implements Consumer{
   Sprite groundwaterTableSprite;
 
   GroundwaterTable({this.game}){
-    groundwaterTableRect = Rect.fromLTWH(game.screenSize.width/8, game.screenSize.height - game.screenSize.height/3, 50, 50);
-    groundwaterTableSprite = Sprite('blackSquare.png');
+    groundwaterTableRect = Rect.fromLTWH(game.screenSize.width/7, game.screenSize.height - game.screenSize.height/3.7, 10, 10);
+    groundwaterTableSprite = Sprite('river.png');
   }
 
   @override

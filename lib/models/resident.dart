@@ -6,7 +6,7 @@ import 'package:godeau/models/god_eau_game.dart';
 
 class Resident implements Consumer {
   @override
-  int consumption;
+  int consumption = 1;
 
   @override
   int maxQte;
@@ -20,8 +20,8 @@ class Resident implements Consumer {
   Sprite residentSprite;
 
   Resident({this.game}){
-    residentRect = Rect.fromLTWH(game.screenSize.width/2.7, game.screenSize.height - game.screenSize.height/2, 50, 50);
-    residentSprite = Sprite('blackSquare.png');
+    residentRect = Rect.fromLTWH(game.screenSize.width/2.9, game.screenSize.height - game.screenSize.height/2, 90, 90);
+    residentSprite = Sprite('resident.png');
   }
 
   @override

@@ -1,9 +1,13 @@
 
 import 'dart:ui';
+import 'package:flame/anchor.dart';
 import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
+import 'package:flame/position.dart';
+import 'package:flame/text_config.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:godeau/controller/rain_spell.dart';
 import 'package:godeau/controller/spell_button.dart';
@@ -26,6 +30,7 @@ class GodEauGame extends Game with TapDetector{
 
   final GameEnvironnement environnement;
   Size screenSize;
+  TextConfig qteOfAllelements;
 
   Background background;
   Map map;
@@ -63,6 +68,12 @@ class GodEauGame extends Game with TapDetector{
     listSpellButton.add(SpellButton(game: this,type: SpellType.waterPurification,buttonIndex: 4));
     listSpellButton.add(SpellButton(game: this,type: SpellType.pump,buttonIndex: 5));
     // sunSpell = SunSpell(game: this);
+
+    qteOfAllelements = TextConfig(
+      fontSize: 20,
+      fontFamily: 'god_eau_font',
+      color: Colors.blueAccent,
+    );
   }
 
   @override
@@ -74,19 +85,13 @@ class GodEauGame extends Game with TapDetector{
   void render(Canvas canvas){
     background.render(canvas);
     map.render(canvas);
-    cloud.render(canvas);
-    farmer.render(canvas);
-    groundwaterTable.render(canvas);
-    pump.render(canvas);
-    purificationMachine.render(canvas);
-    waterTreatmentMachine.render(canvas);
-    resident.render(canvas);
-    river.render(canvas);
+    showAllElements(canvas);
     // sunSpell.render(canvas);
     listSpellButton.forEach((spellButton) {
       spellButton.render(canvas);
     });
-
+    showQteOfAllElements(canvas);
+    showAllConsumptions(canvas);
   }
 
   @override
@@ -106,6 +111,30 @@ class GodEauGame extends Game with TapDetector{
     screenSize = size;
   }
 
+  void showQteOfAllElements(Canvas canvas){
+    if(cloud.isQteShow = true){
+      qteOfAllelements.render(canvas,cloud.qte.toString() + '/' + cloud.maxQte.toString(), Position(screenSize.width - screenSize.width/6, screenSize.height/15));
+    }
+    qteOfAllelements.render(canvas,farmer.qte.toString() + '/' + farmer.maxQte.toString(), Position(screenSize.width/2 - screenSize.width/20, screenSize.height/7));
+    qteOfAllelements.render(canvas,purificationMachine.qte.toString() + '/' + purificationMachine.maxQte.toString(), Position(screenSize.width/2.18, screenSize.height - screenSize.height/2.1));
+    qteOfAllelements.render(canvas,waterTreatmentMachine.qte.toString() + '/' + waterTreatmentMachine.maxQte.toString(), Position(screenSize.width/4, screenSize.height - screenSize.height/2.3));
+    qteOfAllelements.render(canvas,river.qte.toString() + '/' + river.maxQte.toString(), Position(screenSize.width/3.5, screenSize.height - screenSize.height/1.7));
+    qteOfAllelements.render(canvas,pump.qte.toString() + '/' + pump.maxQte.toString(), Position(screenSize.width/7, screenSize.height - screenSize.height/1.8));
+    qteOfAllelements.render(canvas,groundwaterTable.qte.toString() + '/' + groundwaterTable.maxQte.toString(), Position(screenSize.width/8.5, screenSize.height - screenSize.height/3));
+  }
+  void showAllElements(Canvas canvas){
+    cloud.render(canvas);
+    farmer.render(canvas);
+    groundwaterTable.render(canvas);
+    pump.render(canvas);
+    purificationMachine.render(canvas);
+    waterTreatmentMachine.render(canvas);
+    resident.render(canvas);
+    river.render(canvas);
+  }
 
+  void showAllConsumptions(Canvas canvas){
+    qteOfAllelements.render(canvas,resident.consumption.toString() + '/sec', Position(screenSize.width/2.7, screenSize.height - screenSize.height/1.9));
+  }
 
 }

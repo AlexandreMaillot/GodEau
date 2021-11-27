@@ -15,13 +15,13 @@ class Cloud implements Consumer{
   int qte = 0;
 
   final GodEauGame game;
-
+  bool isQteShow = true;
   Rect cloudRect;
   Sprite cloudSprite;
 
   Cloud({this.game}){
-    cloudRect = Rect.fromLTWH(game.screenSize.width - game.screenSize.width/7, game.screenSize.height/8, 50, 50);
-    cloudSprite = Sprite('blackSquare.png');
+    cloudRect = Rect.fromLTWH(game.screenSize.width - game.screenSize.width/5, game.screenSize.height/8, 100, 50);
+    cloudSprite = Sprite('cloud.png');
   }
 
   @override
