@@ -6,7 +6,7 @@ import 'package:godeau/models/god_eau_game.dart';
 
 class Farmer implements Consumer {
   @override
-  int consumption;
+  int consumption = 1;
 
   @override
   int maxQte;
