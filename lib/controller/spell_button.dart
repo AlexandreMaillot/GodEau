@@ -29,7 +29,3 @@ abstract class SpellButton{
 
   }
 }
-
-enum SpellButtonType {
-  rain,
-}

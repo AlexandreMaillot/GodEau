@@ -4,7 +4,7 @@ import 'package:flame/sprite.dart';
 import 'package:godeau/controller/consumer.dart';
 import 'package:godeau/models/god_eau_game.dart';
 
-class Farmer implements Consumer {
+class Cloud implements Consumer{
   @override
   int consumption;
 
@@ -18,18 +18,20 @@ class Farmer implements Consumer {
   // TODO: implement game
   GodEauGame get game => throw UnimplementedError();
 
-  Rect farmerRect;
-  Sprite farmerSprite;
+  Rect cloudRect;
+  Sprite cloudSprite;
 
-  Farmer({game}){
-    //farmerRect = Rect.fromLTWH(0, 0, 0, 0);
-    //farmerSprite = Sprite('fileName')
+  Cloud({game}){
+    //cloudRect = Rect.fromLTWH(0, 0, 0, 0);
+    //cloudSprite = Sprite('fileName')
   }
 
   @override
   void decreaseWater(int qte) {
 
   }
+
+
 
   @override
   void increaseWater(int qte) {
@@ -38,7 +40,7 @@ class Farmer implements Consumer {
 
   @override
   void render(Canvas canvas) {
-    farmerSprite.renderRect(canvas, farmerRect);
+    cloudSprite.renderRect(canvas, cloudRect);
   }
 
   @override

@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flame/sprite.dart';
 import 'package:godeau/controller/consumer.dart';
 import 'package:godeau/models/god_eau_game.dart';
 
@@ -6,24 +9,47 @@ class Resident implements Consumer {
   int consumption;
 
   @override
-  void updateConsumption() {
-    // TODO: implement updateConsumption
-  }
-
-  @override
   int maxQte;
 
   @override
   int qte;
 
   @override
+  // TODO: implement game
+  GodEauGame get game => throw UnimplementedError();
+
+  Rect residentRect;
+  Sprite residentSprite;
+
+  Resident({game}){
+    //residentRect = Rect.fromLTWH(0, 0, 0, 0);
+    //residentSprite = Sprite('fileName')
+  }
+
+  @override
   void decreaseWater(int qte) {
-    // TODO: implement decreaseWater
+
   }
 
   @override
   void increaseWater(int qte) {
-    // TODO: implement increaseWater
+
   }
+
+  @override
+  void render(Canvas canvas) {
+    residentSprite.renderRect(canvas, residentRect);
+  }
+
+  @override
+  void update(double t) {
+
+  }
+
+  @override
+  void updateConsumption() {
+
+  }
+
 
 }
