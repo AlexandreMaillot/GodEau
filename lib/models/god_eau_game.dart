@@ -13,6 +13,7 @@ import 'package:godeau/controller/rain_spell.dart';
 import 'package:godeau/controller/spell_button.dart';
 import 'package:godeau/controller/sun_spell.dart';
 import 'package:godeau/models/background.dart';
+import 'package:godeau/models/evaporation.dart';
 import 'package:godeau/models/groundwater_table.dart';
 import 'package:godeau/models/map.dart';
 import 'package:godeau/models/pump.dart';
@@ -20,6 +21,7 @@ import 'package:godeau/models/purification_machine.dart';
 import 'package:godeau/models/resident.dart';
 import 'package:godeau/models/river.dart';
 import 'package:godeau/models/water_treatment_machine.dart';
+import 'package:godeau/models/wind.dart';
 import 'cloud.dart';
 import 'farmer.dart';
 import 'game_environement.dart';
@@ -48,6 +50,8 @@ class GodEauGame extends Game with TapDetector{
   WaterTreatmentMachine waterTreatmentMachine;
   Resident resident;
   River river;
+  Wind wind;
+  Evaporation evaporation;
 
   void initialize() async{
     resize(await Flame.util.initialDimensions());
@@ -68,6 +72,8 @@ class GodEauGame extends Game with TapDetector{
     listSpellButton.add(SpellButton(game: this,type: SpellType.waterPurification,buttonIndex: 4));
     listSpellButton.add(SpellButton(game: this,type: SpellType.pump,buttonIndex: 5));
     // sunSpell = SunSpell(game: this);
+    wind = Wind(game: this);
+    evaporation = Evaporation(game:this);
 
     qteOfAllelements = TextConfig(
       fontSize: 20,
@@ -112,7 +118,7 @@ class GodEauGame extends Game with TapDetector{
   }
 
   void showQteOfAllElements(Canvas canvas){
-    if(cloud.isQteShow = true){
+    if(cloud.isQteShow == true){
       qteOfAllelements.render(canvas,cloud.qte.toString() + '/' + cloud.maxQte.toString(), Position(screenSize.width - screenSize.width/6, screenSize.height/15));
     }
     qteOfAllelements.render(canvas,farmer.consumption.toString() + '/sec', Position(screenSize.width/2 - screenSize.width/20, screenSize.height/7));
@@ -131,6 +137,13 @@ class GodEauGame extends Game with TapDetector{
     waterTreatmentMachine.render(canvas);
     resident.render(canvas);
     river.render(canvas);
+    if(evaporation.isEvaporing == true){
+      evaporation.render(canvas);
+    }
+    if(wind.isActivated == false){
+      wind.render(canvas);
+    }
+
   }
 
   void showAllConsumptions(Canvas canvas){
