@@ -9,10 +9,10 @@ class Pump implements Consumer{
   int consumption;
 
   @override
-  int maxQte;
+  int maxQte = 10;
 
   @override
-  int qte;
+  int qte = 10;
 
   final GodEauGame game;
 
@@ -20,8 +20,8 @@ class Pump implements Consumer{
   Sprite pumpSprite;
 
   Pump({this.game}){
-  pumpRect = Rect.fromLTWH(game.screenSize.width/7, game.screenSize.height - game.screenSize.height/1.8, 50, 50);
-  pumpSprite = Sprite('blackSquare.png');
+  pumpRect = Rect.fromLTWH(game.screenSize.width/7, game.screenSize.height - game.screenSize.height/1.9, 50, 50);
+  pumpSprite = Sprite('pump.png');
   }
 
   @override
