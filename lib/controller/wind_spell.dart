@@ -32,7 +32,7 @@ class WindSpell implements SpellButton{
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     windSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 5,  game.screenSize.height - 85,WIDTH_BUTTON, HEIGHT_BUTTON);
-    windSpellSprite = Sprite("sun.png");
+    windSpellSprite = Sprite("sunSpellButton.png");
   }
   @override
   void render(Canvas canvas) {
@@ -46,7 +46,7 @@ class WindSpell implements SpellButton{
 
   @override
   void onTap() {
-
+    print("wind");
   }
 
   @override

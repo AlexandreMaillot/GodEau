@@ -31,7 +31,7 @@ class WaterTreatmentSpell implements SpellButton{
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     waterTreatmentSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
-    waterTreatmentSpellSprite = Sprite("sun.png");
+    waterTreatmentSpellSprite = Sprite("sunSpellButton.png");
   }
 
   @override
@@ -48,7 +48,7 @@ class WaterTreatmentSpell implements SpellButton{
 
   @override
   void onTap() {
-
+    print("water treatment");
   }
 
   @override

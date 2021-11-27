@@ -11,7 +11,8 @@ import 'package:godeau/controller/water_treatment_spell.dart';
 import 'package:godeau/controller/wind_spell.dart';
 import 'package:godeau/models/god_eau_game.dart';
 
-abstract class SpellButton{
+
+abstract class SpellButton {
   Icon icon;
   String name;
   bool state = false;
