@@ -1,8 +1,10 @@
 
 import 'dart:ui';
+import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:godeau/controller/rain_spell.dart';
 import 'package:godeau/controller/spell_button.dart';
 import 'package:godeau/controller/sun_spell.dart';
@@ -90,11 +92,15 @@ class GodEauGame extends Game with TapDetector{
   @override
   void onTap() {
     super.onTap();
-    listSpellButton.forEach((spellButton) {
-      spellButton.onTap();
-    });
   }
+  void onTapDown(TapDownDetails d) {
+    listSpellButton.forEach((spellButton) {
+      if(spellButton.toRect().contains(d.globalPosition)) {
+        spellButton.onTapDown(d);
+      }
+    });
 
+  }
   void resize(Size size){
     super.resize(size);
     screenSize = size;

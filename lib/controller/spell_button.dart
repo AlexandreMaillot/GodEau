@@ -1,4 +1,6 @@
 
+import 'package:flame/components/component.dart';
+import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/time.dart';
@@ -12,7 +14,7 @@ import 'package:godeau/controller/wind_spell.dart';
 import 'package:godeau/models/god_eau_game.dart';
 
 
-abstract class SpellButton {
+abstract class SpellButton extends SpriteComponent with Tapable {
   Icon icon;
   String name;
   bool state = false;
@@ -41,9 +43,6 @@ abstract class SpellButton {
 
   }
 
-  void onTap(){
-
-  }
 }
 
 enum SpellType {
