@@ -147,7 +147,7 @@ class GodEauGame extends Game with TapDetector{
     if(evaporation.isEvaporing == true){
       evaporation.render(canvas);
     }
-    if(wind.isActivated == false){
+    if(wind.isActivated == true){
       wind.render(canvas);
     }
     dropletIcon.render(canvas);
