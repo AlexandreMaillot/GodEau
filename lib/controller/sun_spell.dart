@@ -3,11 +3,16 @@ import 'dart:ui';
 
 import 'package:flame/sprite.dart';
 import 'package:flame/time.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/icon.dart';
 import 'package:godeau/models/god_eau_game.dart';
 import 'package:godeau/controller/spell_button.dart';
 
+
 class SunSpell implements SpellButton{
+
+  double WIDTH_BUTTON = 0;
+  double HEIGHT_BUTTON = 0;
   @override
   Icon icon;
 
@@ -20,16 +25,16 @@ class SunSpell implements SpellButton{
   @override
   bool state;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
-
+  final GodEauGame game;
+  // GodEauGame gamde;
   Rect sunSpellRect;
   Sprite sunSpellSprite;
 
-  SunSpell({game}){
-    //sunSpellRect = Rect.fromLTWH(0, 0, 0, 0);
-    //sunSpellSprite = Sprite('fileName')
+  SunSpell({@required this.game,@required int buttonIndex}){
+    WIDTH_BUTTON = game.screenSize.width * 0.1;
+    HEIGHT_BUTTON = game.screenSize.height * 0.2;
+    sunSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 5, game.screenSize.height - 85, game.screenSize.width * 0.1, game.screenSize.height * 0.2);
+    sunSpellSprite = Sprite('sun.png');
   }
   @override
   void onTap() {
@@ -45,5 +50,11 @@ class SunSpell implements SpellButton{
   void update(double t) {
 
   }
+
+  @override
+  double heightButton;
+
+  @override
+  double withButton;
 
 }
