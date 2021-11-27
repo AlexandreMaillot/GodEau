@@ -128,7 +128,7 @@ class GodEauGame extends Game with TapDetector{
       qteOfAllelements.render(canvas,cloud.qte.toString() + '/' + cloud.maxQte.toString(), Position(screenSize.width - screenSize.width/6, screenSize.height/15));
     }
     qteOfAllelements.render(canvas,purificationMachine.qte.toString() + '/' + purificationMachine.maxQte.toString(), Position(screenSize.width/2.18, screenSize.height - screenSize.height/2.1));
-    qteOfAllelements.render(canvas,waterTreatmentMachine.qte.toString() + '/' + waterTreatmentMachine.maxQte.toString(), Position(screenSize.width/4, screenSize.height - screenSize.height/2.3));
+    qteOfAllelements.render(canvas,waterTreatmentMachine.qte.toString() + '/' + waterTreatmentMachine.maxQte.toString(), Position(screenSize.width/3.8, screenSize.height - screenSize.height/2));
     qteOfAllelements.render(canvas,river.qte.toString() + '/' + river.maxQte.toString(), Position(screenSize.width/3.5, screenSize.height - screenSize.height/1.7));
     qteOfAllelements.render(canvas,pump.qte.toString() + '/' + pump.maxQte.toString(), Position(screenSize.width/7.2, screenSize.height - screenSize.height/1.7));
     qteOfAllelements.render(canvas,groundwaterTable.qte.toString() + '/' + groundwaterTable.maxQte.toString(), Position(screenSize.width/8.5, screenSize.height - screenSize.height/3));
