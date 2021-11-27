@@ -14,16 +14,14 @@ class PurificationMachine implements Consumer{
   @override
   int qte;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
+  final GodEauGame game;
 
   Rect purificationMachineRect;
   Sprite purificationMachineSprite;
 
-  PurificationMachine({game}){
-  //purificationMachineRect = Rect.fromLTWH(0, 0, 0, 0);
-  //purificationMachineSprite = Sprite('fileName')
+  PurificationMachine({this.game}){
+  purificationMachineRect = Rect.fromLTWH(game.screenSize.width/4, game.screenSize.height - game.screenSize.height/2.3, 50, 50);
+  purificationMachineSprite = Sprite('blackSquare.png');
   }
 
   @override

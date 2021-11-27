@@ -7,9 +7,8 @@ import 'package:godeau/models/water.dart';
 
 abstract class Consumer implements Water{
   int consumption;
-  final GodEauGame game;
 
-  Consumer({this.game}){
+  Consumer(){
 
   }
 

@@ -14,16 +14,14 @@ class GroundwaterTable implements Consumer{
   @override
   int qte;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
+  final GodEauGame game;
 
   Rect groundwaterTableRect;
   Sprite groundwaterTableSprite;
 
-  GroundwaterTable({game}){
-    //groundwaterTableRect = Rect.fromLTWH(0, 0, 0, 0);
-    //groundwaterTableSprite = Sprite('fileName')
+  GroundwaterTable({this.game}){
+    groundwaterTableRect = Rect.fromLTWH(game.screenSize.width/8, game.screenSize.height - game.screenSize.height/3, 50, 50);
+    groundwaterTableSprite = Sprite('blackSquare.png');
   }
 
   @override
