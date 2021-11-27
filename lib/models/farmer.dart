@@ -20,8 +20,8 @@ class Farmer implements Consumer {
   Sprite farmerSprite;
 
   Farmer({this.game}){
-    farmerRect = Rect.fromLTWH(game.screenSize.width/2 - game.screenSize.width/20, game.screenSize.height/7, 50, 50);
-    farmerSprite = Sprite('blackSquare.png');
+    farmerRect = Rect.fromLTWH(game.screenSize.width/2 - game.screenSize.width/20, game.screenSize.height/7, 100, 50);
+    farmerSprite = Sprite('field.png');
   }
 
   @override
