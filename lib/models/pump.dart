@@ -14,16 +14,14 @@ class Pump implements Consumer{
   @override
   int qte;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
+  final GodEauGame game;
 
   Rect pumpRect;
   Sprite pumpSprite;
 
-  Pump({game}){
-  //pumpRect = Rect.fromLTWH(0, 0, 0, 0);
-  //pumpSprite = Sprite('fileName')
+  Pump({this.game}){
+  pumpRect = Rect.fromLTWH(game.screenSize.width/7, game.screenSize.height - game.screenSize.height/1.8, 50, 50);
+  pumpSprite = Sprite('blackSquare.png');
   }
 
   @override

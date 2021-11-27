@@ -14,16 +14,14 @@ class Farmer implements Consumer {
   @override
   int qte;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
+  final GodEauGame game;
 
   Rect farmerRect;
   Sprite farmerSprite;
 
-  Farmer({game}){
-    //farmerRect = Rect.fromLTWH(0, 0, 0, 0);
-    //farmerSprite = Sprite('fileName')
+  Farmer({this.game}){
+    farmerRect = Rect.fromLTWH(game.screenSize.width/2 - game.screenSize.width/20, game.screenSize.height/7, 50, 50);
+    farmerSprite = Sprite('blackSquare.png');
   }
 
   @override

@@ -14,16 +14,14 @@ class Resident implements Consumer {
   @override
   int qte;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
+  final GodEauGame game;
 
   Rect residentRect;
   Sprite residentSprite;
 
-  Resident({game}){
-    //residentRect = Rect.fromLTWH(0, 0, 0, 0);
-    //residentSprite = Sprite('fileName')
+  Resident({this.game}){
+    residentRect = Rect.fromLTWH(game.screenSize.width/2.7, game.screenSize.height - game.screenSize.height/2, 50, 50);
+    residentSprite = Sprite('blackSquare.png');
   }
 
   @override

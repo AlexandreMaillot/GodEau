@@ -6,24 +6,22 @@ import 'package:godeau/models/god_eau_game.dart';
 
 class Cloud implements Consumer{
   @override
-  int consumption;
+  int consumption = 10;
 
   @override
-  int maxQte;
+  int maxQte = 10;
 
   @override
-  int qte;
+  int qte = 0;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
+  final GodEauGame game;
 
   Rect cloudRect;
   Sprite cloudSprite;
 
-  Cloud({game}){
-    //cloudRect = Rect.fromLTWH(0, 0, 0, 0);
-    //cloudSprite = Sprite('fileName')
+  Cloud({this.game}){
+    cloudRect = Rect.fromLTWH(game.screenSize.width - game.screenSize.width/7, game.screenSize.height/8, 50, 50);
+    cloudSprite = Sprite('blackSquare.png');
   }
 
   @override

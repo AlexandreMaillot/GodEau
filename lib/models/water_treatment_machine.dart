@@ -14,16 +14,14 @@ class WaterTreatmentMachine implements Consumer{
   @override
   int qte;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
+  final GodEauGame game;
 
   Rect waterTreatmentMachineRect;
   Sprite waterTreatmentMachineSprite;
 
-  WaterTreatmentMachine({game}){
-  //waterTreatmentMachineRect = Rect.fromLTWH(0, 0, 0, 0);
-  //waterTreatmentMachineSprite = Sprite('fileName')
+  WaterTreatmentMachine({this.game}){
+    waterTreatmentMachineRect = Rect.fromLTWH(game.screenSize.width/2, game.screenSize.height - game.screenSize.height/2.3, 50, 50);
+    waterTreatmentMachineSprite = Sprite('blackSquare.png');
   }
 
   @override

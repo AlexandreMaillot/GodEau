@@ -14,16 +14,14 @@ class River implements Consumer{
   @override
   int qte;
 
-  @override
-  // TODO: implement game
-  GodEauGame get game => throw UnimplementedError();
+  final GodEauGame game;
 
   Rect riverRect;
   Sprite riverSprite;
 
-  River({game}){
-    //riverRect = Rect.fromLTWH(0, 0, 0, 0);
-    //riverSprite = Sprite('fileName')
+  River({this.game}){
+    riverRect = Rect.fromLTWH(game.screenSize.width/3.5, game.screenSize.height - game.screenSize.height/1.7, 40, 10);
+    riverSprite = Sprite('river.png');
   }
 
   @override
