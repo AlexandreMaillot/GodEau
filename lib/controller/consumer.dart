@@ -20,7 +20,7 @@ abstract class Consumer implements Water{
 
   }
 
-  void updateConsumption() {
+  void updateConsumption(int qte) {
 
   }
 

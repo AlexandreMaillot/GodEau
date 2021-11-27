@@ -6,7 +6,7 @@ import 'package:godeau/models/god_eau_game.dart';
 
 class Resident implements Consumer {
   @override
-  int consumption = 1;
+  int consumption = 3;
 
   @override
   int maxQte;
@@ -26,12 +26,21 @@ class Resident implements Consumer {
 
   @override
   void decreaseWater(int qte) {
-
+    if(this.qte - qte >= 0){
+      this.qte -= qte;
+    } else {
+      this.qte = 0;
+    }
   }
 
   @override
   void increaseWater(int qte) {
-
+    if(this.qte + qte <= maxQte){
+      this.qte += qte;
+    } else {
+      this.qte = maxQte;
+      game.environnement.decreaseEcosystemQteFinal(maxQte - this.qte + qte);
+    }
   }
 
   @override
@@ -45,9 +54,16 @@ class Resident implements Consumer {
   }
 
   @override
-  void updateConsumption() {
-
+  void updateConsumption(int qte) {
+    if(sufficientConsuption(qte)) {
+      consumption = 1;
+    } else {
+      consumption += qte;
+    }
+    print(consumption);
   }
+
+  bool sufficientConsuption(int qte) => qte + consumption < 1;
 
 
 }

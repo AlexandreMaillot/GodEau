@@ -25,7 +25,7 @@ class WaterPurificationSpell implements SpellButton{
   String name = 'Station épuration';
 
   @override
-  bool state;
+  bool state = false;
 
   final GodEauGame game;
 
@@ -89,6 +89,8 @@ class WaterPurificationSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     print(name);
+    state = !state;
+    print(state);
   }
 
   @override

@@ -29,7 +29,7 @@ class SunSpell implements SpellButton  {
   String name = 'Soleil';
 
   @override
-  bool state;
+  bool state = false;
 
   final GodEauGame game;
   // GodEauGame gamde;
@@ -183,6 +183,23 @@ class SunSpell implements SpellButton  {
   @override
   void onTapDown(TapDownDetails details) {
     print(name);
+    if(!state) {
+
+      game.cloud.increaseWater(20);
+      game.environnement.increaseEcosystemQteFinal(10);
+      game.resident.updateConsumption(5);
+      game.farmer.updateConsumption(7);
+      game.groundwaterTable.decreaseWater(10);
+      game.river.decreaseWater(10);
+
+    } else {
+      game.resident.updateConsumption(-5);
+      game.farmer.updateConsumption(-7);
+    }
+    game.evaporation.isEvaporing = !game.evaporation.isEvaporing;
+    state = !state;
+    print(state);
+
   }
 
   @override

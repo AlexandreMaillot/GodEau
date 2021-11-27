@@ -9,7 +9,7 @@ class GroundwaterTable implements Consumer{
   int consumption;
 
   @override
-  int maxQte = 10;
+  int maxQte = 40;
 
   @override
   int qte = 0;
@@ -26,12 +26,21 @@ class GroundwaterTable implements Consumer{
 
   @override
   void decreaseWater(int qte) {
-
+    if(this.qte - qte >= 0){
+      this.qte -= qte;
+    } else {
+      this.qte = 0;
+    }
   }
 
   @override
   void increaseWater(int qte) {
-
+    if(this.qte + qte <= maxQte){
+      this.qte += qte;
+    } else {
+      this.qte = maxQte;
+      game.environnement.decreaseEcosystemQteFinal(maxQte - this.qte + qte);
+    }
   }
 
   @override
@@ -45,8 +54,13 @@ class GroundwaterTable implements Consumer{
   }
 
   @override
-  void updateConsumption() {
-
+  void updateConsumption(int qte) {
+    if(qte + consumption < 1) {
+      consumption = 1;
+    } else {
+      consumption += qte;
+    }
+    print(consumption);
   }
 
 }

@@ -9,7 +9,7 @@ class River implements Consumer{
   int consumption;
 
   @override
-  int maxQte = 10;
+  int maxQte = 50;
 
   @override
   int qte = 0;
@@ -26,14 +26,23 @@ class River implements Consumer{
 
   @override
   void decreaseWater(int qte) {
-
+    if(this.qte - qte >= 0){
+      this.qte -= qte;
+    } else {
+      this.qte = 0;
+    }
   }
 
 
 
   @override
   void increaseWater(int qte) {
-
+    if(this.qte + qte <= maxQte){
+      this.qte += qte;
+    } else {
+      this.qte = maxQte;
+      game.environnement.decreaseEcosystemQteFinal(maxQte - this.qte + qte);
+    }
   }
 
   @override
@@ -47,8 +56,13 @@ class River implements Consumer{
   }
 
   @override
-  void updateConsumption() {
-
+  void updateConsumption(int qte) {
+    if(qte + consumption < 1) {
+      consumption = 1;
+    } else {
+      consumption += qte;
+    }
+    print(consumption);
   }
 
   

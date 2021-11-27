@@ -19,8 +19,6 @@ abstract class SpellButton extends SpriteComponent with Tapable {
   String name;
   bool state = false;
   int limitTime = 15;
-  double withButton = 50;
-  double heightButton = 50;
 
 
   factory SpellButton({@required GodEauGame game,@required SpellType type,@required int buttonIndex}){

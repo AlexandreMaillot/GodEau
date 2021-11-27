@@ -27,7 +27,7 @@ class WindSpell implements SpellButton{
   String name = 'Vent';
 
   @override
-  bool state;
+  bool state = false;
 
   final GodEauGame game;
 
@@ -90,6 +90,8 @@ class WindSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     print(name);
+    state = !state;
+    print(state);
   }
 
   @override

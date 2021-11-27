@@ -29,7 +29,7 @@ class RainSpell implements SpellButton{
   String name = 'Pluie';
 
   @override
-  bool state;
+  bool state = false;
 
   @override
   // TODO: implement game
@@ -93,7 +93,18 @@ class RainSpell implements SpellButton{
 
   @override
   void onTapDown(TapDownDetails details) {
-    print(name);
+    if(!state) {
+      game.farmer.updateConsumption(-2);
+      game.resident.updateConsumption(-2);
+      game.groundwaterTable.increaseWater(10);
+      game.river.increaseWater(10);
+    } else {
+      game.farmer.updateConsumption(2);
+      game.resident.updateConsumption(2);
+    }
+
+    state = !state;
+    print(state);
   }
 
   @override
