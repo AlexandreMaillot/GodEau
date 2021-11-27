@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:godeau/constant.dart';
 
@@ -14,9 +16,11 @@ class LevelButton extends ElevatedButton {
           )
       ),
       backgroundColor: MaterialStateProperty.all<Color>(buttonColor),
+      elevation: MaterialStateProperty.all<double>(0),
     ),
     onPressed: onPressed,
     child: child,
+
   );
 
 }

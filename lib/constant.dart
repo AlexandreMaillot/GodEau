@@ -4,7 +4,7 @@ import 'package:godeau/models/game_environement.dart';
 import 'package:godeau/models/god_eau_game.dart';
 import 'package:godeau/widgets/menu_level_button.dart';
 
-Color buttonColor = const Color.fromRGBO(99, 195, 217, 1);
+Color buttonColor = const Color.fromRGBO(99, 195, 217, 0.3);
 
 List<MenuLevelButton> listMenuLevel = [
   MenuLevelButton(text: "Tutoriel",onPressed: () {
