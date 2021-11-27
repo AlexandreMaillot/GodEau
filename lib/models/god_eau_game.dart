@@ -57,6 +57,9 @@ class GodEauGame extends Game with TapDetector{
   @override
   void onTap() {
     super.onTap();
+    listSpellButton.forEach((spellButton) {
+      spellButton.onTap();
+    });
   }
 
   void resize(Size size){

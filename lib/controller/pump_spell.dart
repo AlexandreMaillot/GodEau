@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/icon.dart';
@@ -30,7 +31,7 @@ class PumpSpell implements SpellButton{
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     pumpSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
-    pumpSpellSprite = Sprite("sun.png");
+    pumpSpellSprite = Sprite("sunSpellButton.png");
   }
 
   @override
@@ -45,7 +46,7 @@ class PumpSpell implements SpellButton{
 
   @override
   void onTap() {
-
+    print(name);
   }
 
   @override

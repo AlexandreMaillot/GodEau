@@ -35,12 +35,12 @@ class RainSpell implements SpellButton{
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     rainSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 5, game.screenSize.height - 85, WIDTH_BUTTON,HEIGHT_BUTTON );
-    rainSpellSprite = Sprite('sun.png');
+    rainSpellSprite = Sprite('rainSpellButton.png');
   }
 
   @override
   void onTap() {
-
+    print("rain");
   }
 
   @override
