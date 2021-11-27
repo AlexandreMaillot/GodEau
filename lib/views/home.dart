@@ -28,10 +28,18 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.settings,color: Colors.white,)
             ),
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: listMenuLevel,
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/iconBackground.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: listMenuLevel,
+              ),
             ),
           ),
           Padding(
