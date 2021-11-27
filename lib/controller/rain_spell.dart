@@ -94,16 +94,26 @@ class RainSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state) {
-      game.farmer.updateConsumption(-2);
-      game.resident.updateConsumption(-2);
-      game.groundwaterTable.increaseWater(10);
-      game.river.increaseWater(10);
+      if(game.wind.isActivated) {
+        game.farmer.updateConsumption(-2);
+        game.resident.updateConsumption(-2);
+        game.groundwaterTable.increaseWater(10);
+        game.river.increaseWater(10);
+        game.wind.isActivated = false;
+        state = true;
+      } else {
+        game.environnement.decreaseEcosystemQteFinal(5);
+        print("pas d'eau dans le nuage");
+        state = false;
+      }
+
     } else {
       game.farmer.updateConsumption(2);
       game.resident.updateConsumption(2);
+      state = false;
     }
 
-    state = !state;
+
     print(state);
   }
 

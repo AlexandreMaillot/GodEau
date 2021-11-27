@@ -22,10 +22,10 @@ class GameEnvironnement{
   }
 
   void decreaseWaterQteFinal(int qte){
-    if(waterQteStart + qte <= 0){
+    if(waterQteStart - qte <= 0){
       print("lose");
     } else {
-      waterQteStart += qte;
+      waterQteStart -= qte;
     }
   }
 
@@ -38,10 +38,10 @@ class GameEnvironnement{
   }
 
   void decreaseEcosystemQteFinal(int qte){
-    if(ecosytemQteStart + qte <= 0){
+    if(ecosytemQteStart - qte <= 0){
       print("lose");
     } else {
-      ecosytemQteStart += qte;
+      ecosytemQteStart -= qte;
     }
 
   }

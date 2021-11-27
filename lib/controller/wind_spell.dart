@@ -90,6 +90,11 @@ class WindSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     print(name);
+    if(!state) {
+      game.wind.isActivated = true;
+    } else {
+
+    }
     state = !state;
     print(state);
   }
