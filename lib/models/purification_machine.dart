@@ -20,8 +20,8 @@ class PurificationMachine implements Consumer{
   Sprite purificationMachineSprite;
 
   PurificationMachine({this.game}){
-  purificationMachineRect = Rect.fromLTWH(game.screenSize.width/4, game.screenSize.height - game.screenSize.height/2.3, 50, 50);
-  purificationMachineSprite = Sprite('blackSquare.png');
+  purificationMachineRect = Rect.fromLTWH(game.screenSize.width/2.2, game.screenSize.height - game.screenSize.height/2.2, 80, 80);
+  purificationMachineSprite = Sprite('epuration.png');
   }
 
   @override

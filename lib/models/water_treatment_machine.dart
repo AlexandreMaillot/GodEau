@@ -20,7 +20,8 @@ class WaterTreatmentMachine implements Consumer{
   Sprite waterTreatmentMachineSprite;
 
   WaterTreatmentMachine({this.game}){
-    waterTreatmentMachineRect = Rect.fromLTWH(game.screenSize.width/2, game.screenSize.height - game.screenSize.height/2.3, 50, 50);
+    waterTreatmentMachineRect = Rect.fromLTWH(game.screenSize.width/4, game.screenSize.height - game.screenSize.height/2.3, 50, 50);
+
     waterTreatmentMachineSprite = Sprite('blackSquare.png');
   }
 
