@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(204, 225, 216, 1),
+      backgroundColor: const Color.fromRGBO(204, 225, 216, 1),
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
             child: IconButton(
                 iconSize: 60,
                 onPressed: () {},
-                icon: Icon(Icons.settings,color: Colors.white,)
+                icon: const Icon(Icons.settings,color: Colors.white,)
             ),
           ),
           Center(
@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
             child: IconButton(
               iconSize: 60,
                 onPressed: () {return exit(0);},
-                icon: Icon(Icons.clear_rounded,color: Colors.white,)
+                icon: const Icon(Icons.clear_rounded,color: Colors.white,)
 
             ),
           ),

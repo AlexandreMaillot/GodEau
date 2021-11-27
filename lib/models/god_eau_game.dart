@@ -3,21 +3,26 @@ import 'dart:ui';
 import 'package:flame/flame.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
+import 'package:godeau/models/background.dart';
+import 'package:godeau/models/map.dart';
 import 'game_environement.dart';
 
 
 
-abstract class GodEauGame extends Game with TapDetector{
+class GodEauGame extends Game with TapDetector{
 
   final GameEnvironnement environnement;
   Size screenSize;
-
+  Background background;
+  Map map;
   GodEauGame(this.environnement){
     initialize();
   }
 
   void initialize() async{
     resize(await Flame.util.initialDimensions());
+    background = Background(game: this);
+    map = Map(game: this);
   }
 
   @override
@@ -27,7 +32,8 @@ abstract class GodEauGame extends Game with TapDetector{
 
   @override
   void render(Canvas canvas){
-
+    background.render(canvas);
+    map.render(canvas);
   }
 
   @override

@@ -1,10 +1,12 @@
 
+import 'package:flutter/cupertino.dart';
+
 class GameEnvironnement{
 
   int waterQteStart;
   int ecosytemQteStart;
 
-  GameEnvironnement(){
+  GameEnvironnement({@required waterQteStart,@required ecosytemQteStart}){
 
   }
 

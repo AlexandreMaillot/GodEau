@@ -9,8 +9,8 @@ class Background{
   final GodEauGame game;
 
   Background({this.game}){
-    //backgroundRect = Rect.fromLTWH(0, 0, 0, 0);
-    //backgroundSprite = Sprite('name');
+    backgroundRect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
+    backgroundSprite = Sprite('background.png');
   }
   void update(double t){
 

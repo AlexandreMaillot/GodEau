@@ -10,8 +10,8 @@ class Map{
   final GodEauGame game;
 
   Map({this.game}){
-    //mapRect = Rect.fromLTWH(0, 0, 0, 0);
-    //mapSprite = Sprite('name');
+    mapRect = Rect.fromLTWH(30, 10, game.screenSize.width - 60, game.screenSize.height - 20);
+    mapSprite = Sprite("map.png");
   }
   void update(double t){
 
