@@ -27,6 +27,7 @@ import 'package:godeau/models/wind.dart';
 import 'cloud.dart';
 import 'farmer.dart';
 import 'game_environement.dart';
+import 'hourglass.dart';
 
 
 
@@ -35,6 +36,7 @@ class GodEauGame extends Game with TapDetector{
   final GameEnvironnement environnement;
   Size screenSize;
   TextConfig qteOfAllelements;
+  TextConfig timeTextConfig;
 
   Background background;
   Map map;
@@ -56,6 +58,7 @@ class GodEauGame extends Game with TapDetector{
   Evaporation evaporation;
   DropletIcon dropletIcon;
   TreeIcon treeIcon;
+  HourGlass hourGlass;
 
   void initialize() async{
     resize(await Flame.util.initialDimensions());
@@ -81,11 +84,16 @@ class GodEauGame extends Game with TapDetector{
     evaporation = Evaporation(game:this);
     dropletIcon = DropletIcon(game: this);
     treeIcon = TreeIcon(game: this);
-
+    hourGlass = HourGlass(game: this);
     qteOfAllelements = TextConfig(
       fontSize: 20,
       fontFamily: 'god_eau_font',
       color: Colors.blueAccent,
+    );
+    timeTextConfig = TextConfig(
+      fontSize: 20,
+      fontFamily: 'god_eau_font',
+      color: Colors.blueGrey,
     );
   }
 
@@ -126,7 +134,7 @@ class GodEauGame extends Game with TapDetector{
 
   void showQteOfAllElements(Canvas canvas){
     if(cloud.isQteShow == true){
-      qteOfAllelements.render(canvas,cloud.qte.toString() + '/' + cloud.maxQte.toString(), Position(screenSize.width - screenSize.width/6, screenSize.height/15));
+      qteOfAllelements.render(canvas,cloud.qte.toString() + '/' + cloud.maxQte.toString(), Position(screenSize.width - screenSize.width/4.5, screenSize.height/8));
     }
     qteOfAllelements.render(canvas,purificationMachine.qte.toString() + '/' + purificationMachine.maxQte.toString(), Position(screenSize.width/2.1, screenSize.height - screenSize.height/2.1));
     qteOfAllelements.render(canvas,waterTreatmentMachine.qte.toString() + '/' + waterTreatmentMachine.maxQte.toString(), Position(screenSize.width/3.8, screenSize.height - screenSize.height/1.95));
@@ -153,6 +161,8 @@ class GodEauGame extends Game with TapDetector{
     }
     dropletIcon.render(canvas);
     treeIcon.render(canvas);
+    hourGlass.render(canvas);
+    timeTextConfig.render(canvas,environnement.timeLimit.toString() + ' sec', Position(screenSize.width - screenSize.width/7, screenSize.height/30));
 
   }
 

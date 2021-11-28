@@ -7,10 +7,12 @@ class GameEnvironnement{
   int waterQteMax = 50;
   int ecosytemQteStart = 50;
   int ecosystemQteMax = 50;
+  int timeLimit = 200;
 
-  GameEnvironnement({@required waterQteStart,@required ecosytemQteStart}){
+  GameEnvironnement({@required waterQteStart,@required ecosytemQteStart,@required timeLimit}){
     waterQteStart = waterQteStart;
     ecosytemQteStart = ecosytemQteStart;
+    timeLimit = timeLimit;
   }
 
   void increaseWaterQteFinal(int qte){
