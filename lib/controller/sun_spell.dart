@@ -35,12 +35,14 @@ class SunSpell implements SpellButton  {
   // GodEauGame gamde;
   Rect sunSpellRect;
   Sprite sunSpellSprite;
+  List<Sprite> sunSpellSprites;
+  int indexSprite = 0;
 
   SunSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     sunSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, game.screenSize.width * 0.1, game.screenSize.height * 0.2);
-    sunSpellSprite = Sprite("sunSpellButton.png");
+    sunSpellSprites = [Sprite("greySunSpell.png"),Sprite("sunSpellButton.png")];
   }
   @override
   void onTap() {
@@ -49,6 +51,7 @@ class SunSpell implements SpellButton  {
 
   @override
   void render(Canvas canvas) {
+    sunSpellSprite = sunSpellSprites[indexSprite];
     sunSpellSprite.renderRect(canvas, sunSpellRect);
   }
 
@@ -184,7 +187,7 @@ class SunSpell implements SpellButton  {
   void onTapDown(TapDownDetails details) {
     print(name);
     if(!state) {
-
+      indexSprite = 1;
       game.cloud.increaseWater(20);
       game.environnement.increaseEcosystemQteFinal(10);
       game.resident.updateConsumption(5);
@@ -193,11 +196,13 @@ class SunSpell implements SpellButton  {
       game.river.decreaseWater(10);
 
     } else {
+      indexSprite = 0;
       game.resident.updateConsumption(-5);
       game.farmer.updateConsumption(-7);
     }
     game.evaporation.isEvaporing = !game.evaporation.isEvaporing;
     state = !state;
+    update(1);
     print(state);
 
   }

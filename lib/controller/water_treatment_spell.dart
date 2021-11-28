@@ -32,18 +32,22 @@ class WaterTreatmentSpell implements SpellButton{
 
   Rect waterTreatmentSpellRect;
   Sprite waterTreatmentSpellSprite;
+  List<Sprite> waterTreatmentSpellSprites;
+  int indexSprite = 0;
 
   WaterTreatmentSpell({@required this.game,int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     waterTreatmentSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
     waterTreatmentSpellSprite = Sprite("waterTreatmentMachineSpell.png");
+    waterTreatmentSpellSprites = [Sprite("greyWaterTreatmentSpell.png"),Sprite("waterTreatmentMachineSpell.png")];
   }
 
   @override
   void render(Canvas canvas) {
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
+    waterTreatmentSpellSprite = waterTreatmentSpellSprites[indexSprite];
     waterTreatmentSpellSprite.renderRect(canvas, waterTreatmentSpellRect);
   }
 
@@ -92,14 +96,17 @@ class WaterTreatmentSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state) {
+      indexSprite = 1;
       game.environnement.decreaseEcosystemQteFinal(5);
       game.pump.decreaseWater(5);
       game.waterTreatmentMachine.increaseWater(5);
       game.resident.updateConsumption(-3);
     } else {
+      indexSprite = 0;
       game.resident.updateConsumption(3);
     }
     state = !state;
+    update(1);
   }
 
   @override

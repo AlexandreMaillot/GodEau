@@ -36,12 +36,15 @@ class RainSpell implements SpellButton{
 
   Rect rainSpellRect;
   Sprite rainSpellSprite;
+  List<Sprite> rainSpellSprites;
+  int indexSprite = 0;
   final GodEauGame game;
+
   RainSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     rainSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON,HEIGHT_BUTTON );
-    rainSpellSprite = Sprite('rainSpellButton.png');
+    rainSpellSprites = [Sprite("greyRainSpell.png"),Sprite("rainSpellButton.png")];
   }
 
   @override
@@ -51,6 +54,7 @@ class RainSpell implements SpellButton{
 
   @override
   void render(Canvas canvas) {
+    rainSpellSprite = rainSpellSprites[indexSprite];
     rainSpellSprite.renderRect(canvas, rainSpellRect);
   }
 
@@ -94,6 +98,7 @@ class RainSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state) {
+      indexSprite = 1;
       if(game.wind.isActivated) {
         game.farmer.updateConsumption(-2);
         game.resident.updateConsumption(-2);
@@ -111,11 +116,12 @@ class RainSpell implements SpellButton{
       }
 
     } else {
+      indexSprite = 0;
       game.farmer.updateConsumption(2);
       game.resident.updateConsumption(2);
       state = false;
     }
-
+    update(1);
 
     print(state);
   }

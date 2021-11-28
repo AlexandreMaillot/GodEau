@@ -66,12 +66,14 @@ class FieldSpell implements SpellButton{
 
   Rect fieldSpellRect;
   Sprite fieldSpellSprite;
+  List<Sprite> fieldSpellSprites;
+  int indexSprite = 0;
 
   FieldSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     fieldSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
-    fieldSpellSprite = Sprite("fieldSpellButton.png");
+    fieldSpellSprites = [Sprite("greyFieldSpell.png"),Sprite("fieldSpellButton.png")];
   }
 
   @override
@@ -161,12 +163,15 @@ class FieldSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state) {
+      indexSprite = 1;
         game.river.decreaseWater(5);
         game.farmer.updateConsumption(-2);
     } else {
+      indexSprite = 0;
       game.farmer.updateConsumption(5);
     }
     state = !state;
+    update(1);
   }
 
   @override
@@ -192,6 +197,7 @@ class FieldSpell implements SpellButton{
 
   @override
   void render(Canvas canvas) {
+    fieldSpellSprite = fieldSpellSprites[indexSprite];
     fieldSpellSprite.renderRect(canvas, fieldSpellRect);
   }
 

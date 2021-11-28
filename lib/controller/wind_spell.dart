@@ -33,15 +33,18 @@ class WindSpell implements SpellButton{
 
   Rect windSpellRect;
   Sprite windSpellSprite;
+  List<Sprite> windSpellSprites;
+  int indexSprite = 0;
 
   WindSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     windSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5,  game.screenSize.height - 85,WIDTH_BUTTON, HEIGHT_BUTTON);
-    windSpellSprite = Sprite("windSpellButton.png");
+    windSpellSprites = [Sprite("greyWindSpellButton.png"),Sprite("windSpellButton.png")];
   }
   @override
   void render(Canvas canvas) {
+    windSpellSprite = windSpellSprites[indexSprite];
     windSpellSprite.renderRect(canvas, windSpellRect);
   }
 
@@ -92,11 +95,14 @@ class WindSpell implements SpellButton{
     print(name);
     if(!state) {
       game.wind.isActivated = true;
+      indexSprite = 1;
       game.cloud.isQteShow = false;
     } else {
       game.wind.isActivated = false;
+      indexSprite = 0;
     }
     state = !state;
+    update(1);
     print(state);
   }
 

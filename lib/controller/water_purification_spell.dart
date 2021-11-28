@@ -31,16 +31,20 @@ class WaterPurificationSpell implements SpellButton{
 
   Rect waterPurificationSpellRect;
   Sprite waterPurificationSpellSprite;
+  List<Sprite> waterPurificationSpellSprites;
+  int indexSprite = 0;
 
   WaterPurificationSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     waterPurificationSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
     waterPurificationSpellSprite = Sprite("spellButtonWaterEpuration.png");
+    waterPurificationSpellSprites = [Sprite("greyWaterPurificationSpell.png"),Sprite("spellButtonWaterEpuration.png")];
   }
 
   @override
   void render(Canvas canvas) {
+    waterPurificationSpellSprite = waterPurificationSpellSprites[indexSprite];
     waterPurificationSpellSprite.renderRect(canvas, waterPurificationSpellRect);
   }
 
@@ -89,6 +93,7 @@ class WaterPurificationSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state){
+      indexSprite = 1;
       if(game.purificationMachine.qte > 0) {
         game.environnement.increaseEcosystemQteFinal(game.purificationMachine.qte);
         game.environnement.increaseWaterQteFinal(game.purificationMachine.qte);
@@ -97,12 +102,14 @@ class WaterPurificationSpell implements SpellButton{
         game.environnement.decreaseWaterQteFinal(5);
       }
     }else {
+      indexSprite = 2;
       if(game.purificationMachine.qte == 10) {
         game.environnement.decreaseEcosystemQteFinal(5);
         game.environnement.decreaseWaterQteFinal(5);
       }
     }
     state = !state;
+    update(1);
     print(state);
   }
 

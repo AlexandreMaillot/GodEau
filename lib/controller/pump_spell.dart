@@ -31,16 +31,19 @@ class PumpSpell implements SpellButton{
 
   Rect pumpSpellRect;
   Sprite pumpSpellSprite;
+  List<Sprite> pumpSpellSprites;
+  int indexSprite = 0;
 
   PumpSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     pumpSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
-    pumpSpellSprite = Sprite("pumpSpellButton.png");
+    pumpSpellSprites = [Sprite("greyPumpSpell.png"),Sprite("pumpSpellButton.png")];
   }
 
   @override
   void render(Canvas canvas) {
+    pumpSpellSprite = pumpSpellSprites[indexSprite];
     pumpSpellSprite.renderRect(canvas, pumpSpellRect);
   }
 
@@ -89,14 +92,17 @@ class PumpSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state) {
+      indexSprite = 1;
         game.groundwaterTable.decreaseWater(10);
         game.pump.increaseWater(10);
     } else {
+      indexSprite = 0;
       if(game.groundwaterTable.qte == game.groundwaterTable.maxQte){
         game.environnement.decreaseEcosystemQteFinal(5);
       }
     }
     state = !state;
+    update(1);
     print(state);
 
   }
