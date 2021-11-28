@@ -44,9 +44,16 @@ class WaterPurificationSpell implements SpellButton{
     waterPurificationSpellSprite = Sprite("spellButtonWaterEpuration.png");
     waterPurificationSpellSprites = [Sprite("greyWaterPurificationSpell.png"),Sprite("spellButtonWaterEpuration.png")];
     timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
-      game.environnement.decreaseWaterQteFinal(10);
-      game.environnement.decreaseEcosystemQteFinal(10);
-    });
+      if(state == true && game.purificationMachine.qte == 10) {
+        game.environnement.increaseEcosystemQteFinal(game.purificationMachine.qte);
+        game.environnement.increaseWaterQteFinal(game.purificationMachine.qte);
+        game.purificationMachine.decreaseWater(game.purificationMachine.qte);
+      }
+      if(state == true && game.purificationMachine.qte == 0) {
+        game.environnement.decreaseEcosystemQteFinal(5);
+        game.environnement.decreaseWaterQteFinal(5);
+      }
+      });
     timer.start();
   }
 
@@ -105,6 +112,7 @@ class WaterPurificationSpell implements SpellButton{
       if(game.purificationMachine.qte > 0) {
         game.environnement.increaseEcosystemQteFinal(game.purificationMachine.qte);
         game.environnement.increaseWaterQteFinal(game.purificationMachine.qte);
+        game.purificationMachine.decreaseWater(game.purificationMachine.qte);
       }else{
         game.environnement.decreaseEcosystemQteFinal(5);
         game.environnement.decreaseWaterQteFinal(5);
@@ -112,8 +120,8 @@ class WaterPurificationSpell implements SpellButton{
     }else {
       indexSprite = 0;
       if(game.purificationMachine.qte == 10) {
-        game.environnement.decreaseEcosystemQteFinal(5);
-        game.environnement.decreaseWaterQteFinal(5);
+        game.environnement.decreaseEcosystemQteFinal(2);
+        game.environnement.decreaseWaterQteFinal(2);
       }
     }
     state = !state;

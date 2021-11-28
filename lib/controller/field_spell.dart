@@ -34,7 +34,7 @@ class FieldSpell implements SpellButton{
   Icon icon;
 
   @override
-  int limitTime = 15;
+  int limitTime = 20;
 
   @override
   String name = 'Champ';
@@ -77,8 +77,12 @@ class FieldSpell implements SpellButton{
     fieldSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
     fieldSpellSprites = [Sprite("greyFieldSpell.png"),Sprite("fieldSpellButton.png")];
     timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
-      game.environnement.decreaseWaterQteFinal(10);
-      game.environnement.decreaseEcosystemQteFinal(10);
+      if(state == true){
+        game.environnement.decreaseWaterQteFinal(1);
+        game.environnement.decreaseEcosystemQteFinal(1);
+        game.river.decreaseWater(5);
+        game.farmer.updateConsumption(-2);
+      }
     });
     timer.start();
   }

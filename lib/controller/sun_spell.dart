@@ -46,8 +46,10 @@ class SunSpell implements SpellButton  {
     sunSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, game.screenSize.width * 0.1, game.screenSize.height * 0.2);
     sunSpellSprites = [Sprite("greySunSpell.png"),Sprite("sunSpellButton.png")];
     timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
-      game.environnement.decreaseWaterQteFinal(10);
-      game.environnement.decreaseEcosystemQteFinal(10);
+      if(state == true){
+        game.environnement.decreaseWaterQteFinal(10);
+        game.environnement.decreaseEcosystemQteFinal(10);
+      }
     });
     timer.start();
   }
@@ -199,7 +201,7 @@ class SunSpell implements SpellButton  {
       game.environnement.increaseEcosystemQteFinal(10);
       game.resident.updateConsumption(5);
       game.farmer.updateConsumption(7);
-      game.groundwaterTable.decreaseWater(10);
+      game.groundwaterTable.decreaseWater(5);
       game.river.decreaseWater(10);
 
     } else {

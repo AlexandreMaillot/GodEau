@@ -21,7 +21,7 @@ class WaterTreatmentSpell implements SpellButton{
   Icon icon;
 
   @override
-  int limitTime = 15;
+  int limitTime = 10;
 
   @override
   String name = 'Traitement des eaux usées';
@@ -45,8 +45,22 @@ class WaterTreatmentSpell implements SpellButton{
     waterTreatmentSpellSprite = Sprite("waterTreatmentMachineSpell.png");
     waterTreatmentSpellSprites = [Sprite("greyWaterTreatmentSpell.png"),Sprite("waterTreatmentMachineSpell.png")];
     timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
-      game.environnement.decreaseWaterQteFinal(10);
-      game.environnement.decreaseEcosystemQteFinal(10);
+      if(state == true && game.waterTreatmentMachine.qte == game.waterTreatmentMachine.maxQte){
+        game.waterTreatmentMachine.decreaseWater(game.waterTreatmentMachine.qte);
+        game.environnement.increaseWaterQteFinal(game.waterTreatmentMachine.qte);
+        game.environnement.increaseEcosystemQteFinal(game.waterTreatmentMachine.qte);
+        game.resident.updateConsumption(-3);
+      }else if(state == true && game.waterTreatmentMachine.qte == 0){
+        game.environnement.decreaseWaterQteFinal(3);
+        game.environnement.decreaseEcosystemQteFinal(3);
+      }else if(game.waterTreatmentMachine.qte < game.waterTreatmentMachine.maxQte){
+        if(game.pump.qte > 0){
+          game.waterTreatmentMachine.increaseWater(game.pump.qte);
+          game.pump.decreaseWater(game.pump.qte);
+          game.environnement.increaseWaterQteFinal(2);
+          game.environnement.increaseEcosystemQteFinal(2);
+        }
+      }
     });
     timer.start();
   }
@@ -105,10 +119,12 @@ class WaterTreatmentSpell implements SpellButton{
   void onTapDown(TapDownDetails details) {
     if(!state) {
       indexSprite = 1;
-      game.environnement.decreaseEcosystemQteFinal(5);
-      game.pump.decreaseWater(5);
-      game.waterTreatmentMachine.increaseWater(5);
-      game.resident.updateConsumption(-3);
+      game.environnement.decreaseEcosystemQteFinal(2);
+      if(game.pump.qte > 0){
+        game.pump.decreaseWater(5);
+        game.waterTreatmentMachine.increaseWater(5);
+      }
+
     } else {
       indexSprite = 0;
       game.resident.updateConsumption(3);

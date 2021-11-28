@@ -48,8 +48,10 @@ class RainSpell implements SpellButton{
     rainSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON,HEIGHT_BUTTON );
     rainSpellSprites = [Sprite("greyRainSpell.png"),Sprite("rainSpellButton.png")];
     timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
-      game.environnement.decreaseWaterQteFinal(10);
-      game.environnement.decreaseEcosystemQteFinal(10);
+      if(state == true){
+        game.environnement.decreaseWaterQteFinal(10);
+        game.environnement.decreaseEcosystemQteFinal(10);
+      }
     });
     timer.start();
   }
@@ -110,8 +112,10 @@ class RainSpell implements SpellButton{
         indexSprite = 1;
         game.farmer.updateConsumption(-2);
         game.resident.updateConsumption(-2);
-        game.groundwaterTable.increaseWater(10);
-        game.river.increaseWater(10);
+        game.groundwaterTable.increaseWater(20);
+        game.environnement.increaseEcosystemQteFinal(10);
+        game.environnement.increaseWaterQteFinal(10);
+        game.river.increaseWater(20);
         game.cloud.decreaseWater(20);
         game.wind.isActivated = false;
         game.cloud.isQteShow = true;

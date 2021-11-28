@@ -43,8 +43,16 @@ class PumpSpell implements SpellButton{
     pumpSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
     pumpSpellSprites = [Sprite("greyPumpSpell.png"),Sprite("pumpSpellButton.png")];
     timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
-      game.environnement.decreaseWaterQteFinal(10);
-      game.environnement.decreaseEcosystemQteFinal(10);
+      if(state == true && game.pump.qte == game.pump.maxQte ){
+        game.environnement.decreaseEcosystemQteFinal(2);
+        game.environnement.decreaseWaterQteFinal(2);
+      }else if(state == true && game.groundwaterTable.qte >= 10){
+        game.groundwaterTable.decreaseWater(10);
+        game.pump.increaseWater(10);
+        game.environnement.increaseWaterQteFinal(10);
+            game.environnement.increaseEcosystemQteFinal(10);
+      }
+
     });
     timer.start();
   }
@@ -101,8 +109,18 @@ class PumpSpell implements SpellButton{
   void onTapDown(TapDownDetails details) {
     if(!state) {
       indexSprite = 1;
+      if(game.pump.qte == game.pump.maxQte ){
+        game.environnement.decreaseEcosystemQteFinal(5);
+        game.environnement.decreaseWaterQteFinal(5);
+      }else if(game.groundwaterTable.qte >= 10){
         game.groundwaterTable.decreaseWater(10);
         game.pump.increaseWater(10);
+        game.environnement.increaseEcosystemQteFinal(10);
+        game.environnement.increaseWaterQteFinal(10);
+      }else{
+        game.environnement.decreaseEcosystemQteFinal(5);
+        game.environnement.decreaseWaterQteFinal(5);
+      }
     } else {
       indexSprite = 0;
       if(game.groundwaterTable.qte == game.groundwaterTable.maxQte){
