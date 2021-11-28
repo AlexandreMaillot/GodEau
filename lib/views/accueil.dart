@@ -1,3 +1,4 @@
+import 'package:flame/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 import 'home.dart';
@@ -43,6 +44,7 @@ class _AccueilState extends State<Accueil> {
         Image.asset("assets/images/logo.png"),
         TextButton(
           onPressed: (){
+
             Navigator.push(
               context,
               MaterialPageRoute(

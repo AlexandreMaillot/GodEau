@@ -4,6 +4,7 @@ import 'package:flame/anchor.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/effects/effects.dart';
+import 'package:flame/flame.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/text_config.dart';
@@ -174,12 +175,13 @@ class FieldSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state) {
+      Flame.audio.play("click.m4a");
       indexSprite = 1;
         game.river.decreaseWater(5);
         game.farmer.updateConsumption(-2);
     } else {
       indexSprite = 0;
-      game.farmer.updateConsumption(5);
+      game.farmer.updateConsumption(2);
     }
     state = !state;
     update(1);

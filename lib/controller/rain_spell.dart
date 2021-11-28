@@ -5,6 +5,7 @@ import 'package:flame/anchor.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/effects/effects.dart';
+import 'package:flame/flame.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/text_config.dart';
@@ -109,6 +110,7 @@ class RainSpell implements SpellButton{
     if(!state) {
 
       if(game.wind.isActivated) {
+        Flame.audio.play("click.m4a");
         indexSprite = 1;
         game.farmer.updateConsumption(-2);
         game.resident.updateConsumption(-2);

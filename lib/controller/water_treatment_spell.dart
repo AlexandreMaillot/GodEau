@@ -4,6 +4,7 @@ import 'package:flame/anchor.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/effects/effects.dart';
+import 'package:flame/flame.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/text_config.dart';
@@ -118,6 +119,7 @@ class WaterTreatmentSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state) {
+      // Flame.audio.play("click.m4a");
       indexSprite = 1;
       game.environnement.decreaseEcosystemQteFinal(2);
       if(game.pump.qte > 0 && game.waterTreatmentMachine.qte != 10){
