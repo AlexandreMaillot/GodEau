@@ -12,7 +12,7 @@ class GroundwaterTable implements Consumer{
   int maxQte = 40;
 
   @override
-  int qte = 0;
+  int qte = 20;
 
   final GodEauGame game;
 

@@ -12,7 +12,7 @@ class River implements Consumer{
   int maxQte = 50;
 
   @override
-  int qte = 0;
+  int qte = 50;
 
   final GodEauGame game;
 

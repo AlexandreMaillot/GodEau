@@ -1,4 +1,5 @@
 
+
 import 'dart:ui';
 import 'package:flame/anchor.dart';
 import 'package:flame/components/mixins/tapable.dart';
@@ -7,6 +8,7 @@ import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flame/position.dart';
 import 'package:flame/text_config.dart';
+import 'package:flame/time.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:godeau/controller/rain_spell.dart';
@@ -61,6 +63,7 @@ class GodEauGame extends Game with TapDetector{
   TreeIcon treeIcon;
   HourGlass hourGlass;
   EndGame endGame;
+  Timer timer;
 
   void initialize() async{
     resize(await Flame.util.initialDimensions());
@@ -88,6 +91,13 @@ class GodEauGame extends Game with TapDetector{
     treeIcon = TreeIcon(game: this);
     hourGlass = HourGlass(game: this);
     endGame = EndGame(game: this,indexSprite: 0);
+    timer = Timer(1,repeat: true,callback:(){
+      environnement.timeLimit -= 1;
+      if(environnement.timeLimit == 0){
+        environnement.haveWin = true;
+      }
+    });
+    timer.start();
     qteOfAllelements = TextConfig(
       fontSize: 20,
       fontFamily: 'god_eau_font',
@@ -102,7 +112,7 @@ class GodEauGame extends Game with TapDetector{
 
   @override
   void update(double t) {
-
+    timer.update(t);
   }
 
   @override
