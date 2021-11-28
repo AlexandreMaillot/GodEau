@@ -113,15 +113,7 @@ class GodEauGame extends Game with TapDetector{
 
   @override
   void update(double t) {
-    // callTimers(t);
-    timer.update(t);
-    resident.update(t);
-    farmer.update(t);
-    listSpellButton.forEach((spellButton) {
-      if(spellButton.state == true){
-        spellButton.timer.update(t);
-      }
-    });
+    callTimers(t);
   }
 
   @override
