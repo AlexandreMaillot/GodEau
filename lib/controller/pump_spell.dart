@@ -88,15 +88,17 @@ class PumpSpell implements SpellButton{
 
   @override
   void onTapDown(TapDownDetails details) {
-    print(name);
     if(!state) {
-      game.environnement.increaseEcosystemQteFinal(5);
-      game.groundwaterTable.decreaseWater(30);
+        game.groundwaterTable.decreaseWater(10);
+        game.pump.increaseWater(10);
     } else {
-
+      if(game.groundwaterTable.qte == game.groundwaterTable.maxQte){
+        game.environnement.decreaseEcosystemQteFinal(5);
+      }
     }
     state = !state;
     print(state);
+
   }
 
   @override

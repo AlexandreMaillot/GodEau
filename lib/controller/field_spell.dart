@@ -161,19 +161,12 @@ class FieldSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state) {
-      if(game.river.qte != 0) {
         game.river.decreaseWater(5);
         game.farmer.updateConsumption(-2);
-      } else {
-        game.environnement.decreaseEcosystemQteFinal(5);
-        print("pas d'eau dans la rivière");
-      }
-
     } else {
       game.farmer.updateConsumption(5);
-      game.resident.updateConsumption(2);
-      state = false;
     }
+    state = !state;
   }
 
   @override

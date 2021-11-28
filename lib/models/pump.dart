@@ -12,7 +12,7 @@ class Pump implements Consumer{
   int maxQte = 10;
 
   @override
-  int qte = 10;
+  int qte = 0;
 
   final GodEauGame game;
 
@@ -30,6 +30,7 @@ class Pump implements Consumer{
       this.qte -= qte;
     } else {
       this.qte = 0;
+      game.environnement.decreaseEcosystemQteFinal(maxQte - this.qte + qte);
     }
   }
 

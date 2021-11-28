@@ -30,6 +30,7 @@ class River implements Consumer{
       this.qte -= qte;
     } else {
       this.qte = 0;
+      game.environnement.decreaseEcosystemQteFinal(maxQte - this.qte + qte);
     }
   }
 

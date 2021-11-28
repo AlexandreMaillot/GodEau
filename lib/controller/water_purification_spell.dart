@@ -89,10 +89,18 @@ class WaterPurificationSpell implements SpellButton{
   @override
   void onTapDown(TapDownDetails details) {
     if(!state){
-      game.environnement.increaseEcosystemQteFinal(5);
-      game.environnement.decreaseWaterQteFinal(10);
+      if(game.purificationMachine.qte > 0) {
+        game.environnement.increaseEcosystemQteFinal(game.purificationMachine.qte);
+        game.environnement.increaseWaterQteFinal(game.purificationMachine.qte);
+      }else{
+        game.environnement.decreaseEcosystemQteFinal(5);
+        game.environnement.decreaseWaterQteFinal(5);
+      }
     }else {
-
+      if(game.purificationMachine.qte == 10) {
+        game.environnement.decreaseEcosystemQteFinal(5);
+        game.environnement.decreaseWaterQteFinal(5);
+      }
     }
     state = !state;
     print(state);
