@@ -11,7 +11,7 @@ class TreeIcon{
   final GodEauGame game;
 
   TreeIcon({this.game}){
-    treeIconRect = Rect.fromLTWH(game.screenSize.width/6, game.screenSize.height/30, 20, 20);
+    treeIconRect = Rect.fromLTWH(game.screenSize.width/4.5, game.screenSize.height/30, 20, 20);
     treeIconSprite = Sprite('tree.png');
   }
   void update(double t){

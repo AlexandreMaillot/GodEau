@@ -11,7 +11,7 @@ class DropletIcon{
   final GodEauGame game;
 
   DropletIcon({this.game}){
-    dropletRect = Rect.fromLTWH(game.screenSize.width/15 , game.screenSize.height/30, 20, 20);
+    dropletRect = Rect.fromLTWH(game.screenSize.width/10.5 , game.screenSize.height/30, 20, 20);
     dropletSprite = Sprite('droplet.png');
   }
   void update(double t){

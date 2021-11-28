@@ -4,10 +4,10 @@ import 'package:godeau/models/end_game.dart';
 
 class GameEnvironnement{
 
-  int waterQteStart = 50;
-  int waterQteMax = 50;
-  int ecosytemQteStart = 50;
-  int ecosystemQteMax = 50;
+  int waterQteStart = 100;
+  int waterQteMax = 100;
+  int ecosytemQteStart = 100;
+  int ecosystemQteMax = 100;
   int timeLimit = 200;
   bool haveLose = false;
   bool haveWin = false;
