@@ -12,10 +12,12 @@ class GameEnvironnement{
   bool haveLose = false;
   bool haveWin = false;
 
-  GameEnvironnement({@required waterQteStart,@required ecosytemQteStart,@required timeLimit}){
-    waterQteStart = waterQteStart;
-    ecosytemQteStart = ecosytemQteStart;
-    timeLimit = timeLimit;
+  GameEnvironnement({@required waterQte,@required ecosytemQte,@required timeLimitParam}){
+    waterQteStart = waterQte;
+    waterQteMax = waterQte;
+    ecosytemQteStart = ecosytemQte;
+    ecosystemQteMax = ecosytemQte;
+    timeLimit = timeLimitParam;
   }
 
   void increaseWaterQteFinal(int qte){

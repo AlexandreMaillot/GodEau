@@ -1,4 +1,7 @@
 
+import 'package:flame/game.dart';
+import 'package:flame/game/embedded_game_widget.dart';
+import 'package:flame/game/widget_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:godeau/models/game_environement.dart';
 import 'package:godeau/models/god_eau_game.dart';
@@ -8,14 +11,25 @@ Color buttonColor = const Color.fromRGBO(99, 195, 217, 0.3);
 
 List<MenuLevelButton> listMenuLevel = [
   MenuLevelButton(text: "Tutoriel",onPressed: () {
-    GameEnvironnement gameEnv = GameEnvironnement(waterQteStart: 100,ecosytemQteStart: 100,timeLimit: 200);
-    final GodEauGame game = GodEauGame(gameEnv);
-    // game.builder.build(game);
-    // game.ov
-    runApp(game.widget);
+    GameEnvironnement gameEnv = GameEnvironnement(waterQte: 220,ecosytemQte: 100,timeLimitParam: 120);
+    launchGame(gameEnv);
   },),
-  MenuLevelButton(text: "Niveau 1",onPressed: () {},),
-  MenuLevelButton(text: "Niveau 2",onPressed: () {},),
-  MenuLevelButton(text: "Niveau 3",onPressed: () {},),
+  MenuLevelButton(text: "Niveau 1",onPressed: () {
+    GameEnvironnement gameEnv = GameEnvironnement(waterQte: 20,ecosytemQte: 100,timeLimitParam: 10);
+    launchGame(gameEnv);
+  },),
+  MenuLevelButton(text: "Niveau 2",onPressed: () {
+    GameEnvironnement gameEnv = GameEnvironnement(waterQte: 50,ecosytemQte: 50,timeLimitParam: 100);
+    launchGame(gameEnv);
+  },),
+  MenuLevelButton(text: "Niveau 3",onPressed: () {
+    GameEnvironnement gameEnv = GameEnvironnement(waterQte: 20,ecosytemQte: 100,timeLimitParam: 30);
+    launchGame(gameEnv);
+  },),
 
 ];
+
+void launchGame(GameEnvironnement gameEnv) {
+  final GodEauGame game = GodEauGame(gameEnv);
+  runApp(game.widget);
+}

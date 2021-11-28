@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:godeau/constant.dart';
+
+import 'accueil.dart';
 // import 'package:godeau/controller/level_button.dart';
 
 class Home extends StatefulWidget {
@@ -29,10 +31,11 @@ class _HomeState extends State<Home> {
             ),
           ),
           Container(
-            decoration: BoxDecoration(
+            width: MediaQuery.of(context).size.width/2,
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/iconBackground.png'),
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
             child: Center(
@@ -46,7 +49,11 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(1.0),
             child: IconButton(
               iconSize: 60,
-                onPressed: () {return exit(0);},
+                onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Accueil()),
+                );},
                 icon: const Icon(Icons.clear_rounded,color: Colors.white,)
 
             ),

@@ -26,6 +26,7 @@ import 'package:godeau/models/river.dart';
 import 'package:godeau/models/tree_icon.dart';
 import 'package:godeau/models/water_treatment_machine.dart';
 import 'package:godeau/models/wind.dart';
+import 'package:godeau/views/accueil.dart';
 import 'package:godeau/views/home.dart';
 import 'cloud.dart';
 import 'end_game.dart';
@@ -48,6 +49,7 @@ class GodEauGame extends Game with TapDetector{
   List<SpellButton> listSpellButton = [];
   GodEauGame(this.environnement){
     initialize();
+    environnement.ecosystemQteMax = this.environnement.ecosystemQteMax;
 
   }
   Cloud cloud;
@@ -68,6 +70,8 @@ class GodEauGame extends Game with TapDetector{
 
   void initialize() async{
     resize(await Flame.util.initialDimensions());
+    print(this.screenSize.width);
+    print(this.screenSize.height);
     background = Background(game: this);
     map = Map(game: this);
     cloud = Cloud(game: this);
@@ -94,8 +98,9 @@ class GodEauGame extends Game with TapDetector{
     endGame = EndGame(game: this,indexSprite: 0);
     timer = Timer(1,repeat: true,callback:(){
       environnement.timeLimit -= 1;
-      if(environnement.timeLimit == 0){
+      if(environnement.timeLimit <= 0 && environnement.waterQteStart > 0 && environnement.ecosytemQteStart > 0){
         environnement.haveWin = true;
+        stopAllTimers();
       }
     });
     timer.start();
@@ -144,20 +149,40 @@ class GodEauGame extends Game with TapDetector{
     super.onTap();
     if(environnement.haveLose) {
       environnement.haveLose = false;
-      timer.stop();
-      resident.residentTimer.stop();
-      farmer.farmerTimer.stop();
-      listSpellButton.forEach((spellButton) {
-        if(spellButton.state == true){
-          spellButton.timer.stop();
-        }
-      });
+      stopAllTimers();
+      returnAccueil();
+      // (BuildContext context) =>Navigator.push(context,MaterialPageRoute(
+      //     builder: (context) => Home()), );
 
     }
     if(environnement.haveWin) {
       environnement.haveWin = false;
-      timer.stop();
+      stopAllTimers();
+      returnAccueil();
     }
+  }
+
+  void returnAccueil() {
+    Widget testWidget = MediaQuery(
+        data: MediaQueryData(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+            home: Accueil()
+        ),
+    );
+    runApp(testWidget);
+  }
+
+  void stopAllTimers() {
+    timer.stop();
+    resident.residentTimer.stop();
+    farmer.farmerTimer.stop();
+
+    listSpellButton.forEach((spellButton) {
+      if(spellButton.state == true){
+        spellButton.timer.stop();
+      }
+    });
   }
   void onTapDown(TapDownDetails d) {
     listSpellButton.forEach((spellButton) {

@@ -15,7 +15,33 @@ class _AccueilState extends State<Accueil> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(204, 225, 216, 1),
       body: Center(
-        child: ElevatedButton(
+        child: InkWell(
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Home()),
+            );
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/startGame.png"),
+                  fit: BoxFit.cover,
+                )),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Column buildColumn(BuildContext context) {
+    return Column(
+      children: [
+        Image.asset("assets/images/logo.png"),
+        TextButton(
           onPressed: (){
             Navigator.push(
               context,
@@ -23,9 +49,14 @@ class _AccueilState extends State<Accueil> {
                   builder: (context) => Home()),
             );
           },
-          child: Text("START"),
+          child: Text("APPUYER POUR JOUER",style: TextStyle(
+            fontSize: 43,
+            fontFamily: "god_eau_font",
+            color: Color.fromRGBO(255, 241, 155, 1),
+          ),),
         ),
-      )
+      ],
     );
   }
 }
+

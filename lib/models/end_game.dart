@@ -13,7 +13,7 @@ class EndGame{
 
   EndGame({this.game,int indexSprite}){
     endGameRect = Rect.fromLTWH(0, 0, game.screenSize.width, game.screenSize.height);
-    endGameSprites = [Sprite("feb.png"),Sprite("ez.png")];
+    endGameSprites = [Sprite("loseBackground.png"),Sprite("winBackground.png")];
   }
   void update(double t){
 
