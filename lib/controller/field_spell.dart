@@ -7,114 +7,15 @@ import 'package:flame/effects/effects.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/text_config.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/src/gestures/tap.dart';
 import 'package:flutter/src/widgets/icon.dart';
 import 'package:godeau/controller/spell_button.dart';
 import 'package:godeau/models/god_eau_game.dart';
 
-class PumpSpell implements SpellButton{
+class FieldSpell implements SpellButton{
   double WIDTH_BUTTON = 0;
   double HEIGHT_BUTTON = 0;
-  @override
-  Icon icon;
-
-  @override
-  int limitTime;
-
-  @override
-  String name = 'Station de pompage';
-
-  @override
-  bool state = false;
-
-  final GodEauGame game;
-
-  Rect pumpSpellRect;
-  Sprite pumpSpellSprite;
-
-  PumpSpell({@required this.game,@required int buttonIndex}){
-    WIDTH_BUTTON = game.screenSize.width * 0.1;
-    HEIGHT_BUTTON = game.screenSize.height * 0.2;
-    pumpSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
-    pumpSpellSprite = Sprite("pumpSpellButton.png");
-  }
-
-  @override
-  void render(Canvas canvas) {
-    pumpSpellSprite.renderRect(canvas, pumpSpellRect);
-  }
-
-  @override
-  void update(double t) {
-
-  }
-
-  @override
-  void onTap() {
-    // print(name);
-  }
-
-  @override
-  double heightButton;
-
-  @override
-  double withButton;
-
-  @override
-  bool checkTapOverlap(Offset o) {
-    // TODO: implement checkTapOverlap
-    throw UnimplementedError();
-  }
-
-  @override
-  void handleTapCancel(int pointerId) {
-    // TODO: implement handleTapCancel
-  }
-
-  @override
-  void handleTapDown(int pointerId, TapDownDetails details) {
-    // TODO: implement handleTapDown
-  }
-
-  @override
-  void handleTapUp(int pointerId, TapUpDetails details) {
-    // TODO: implement handleTapUp
-  }
-
-  @override
-  void onTapCancel() {
-    // TODO: implement onTapCancel
-  }
-
-  @override
-  void onTapDown(TapDownDetails details) {
-    print(name);
-    if(!state) {
-      game.environnement.increaseEcosystemQteFinal(5);
-      game.groundwaterTable.decreaseWater(30);
-    } else {
-
-    }
-    state = !state;
-    print(state);
-  }
-
-  @override
-  void onTapUp(TapUpDetails details) {
-    // TODO: implement onTapUp
-  }
-
-  @override
-  Iterable<Tapable> tapableChildren() {
-    // TODO: implement tapableChildren
-    throw UnimplementedError();
-  }
-
-  @override
-  Rect toRect() {
-    return pumpSpellRect;
-  }
-
 
   @override
   Anchor anchor;
@@ -129,6 +30,15 @@ class PumpSpell implements SpellButton{
   double height;
 
   @override
+  Icon icon;
+
+  @override
+  int limitTime;
+
+  @override
+  String name = 'Champ';
+
+  @override
   Paint overridePaint;
 
   @override
@@ -141,6 +51,9 @@ class PumpSpell implements SpellButton{
   Sprite sprite;
 
   @override
+  bool state = false;
+
+  @override
   double width;
 
   @override
@@ -148,6 +61,18 @@ class PumpSpell implements SpellButton{
 
   @override
   double y;
+
+  final GodEauGame game;
+
+  Rect fieldSpellRect;
+  Sprite fieldSpellSprite;
+
+  FieldSpell({@required this.game,@required int buttonIndex}){
+    WIDTH_BUTTON = game.screenSize.width * 0.1;
+    HEIGHT_BUTTON = game.screenSize.height * 0.2;
+    fieldSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
+    fieldSpellSprite = Sprite("fieldSpellButton.png");
+  }
 
   @override
   void addEffect(PositionComponentEffect effect) {
@@ -157,6 +82,12 @@ class PumpSpell implements SpellButton{
   @override
   double angleBetween(PositionComponent c) {
     // TODO: implement angleBetween
+    throw UnimplementedError();
+  }
+
+  @override
+  bool checkTapOverlap(Offset o) {
+    // TODO: implement checkTapOverlap
     throw UnimplementedError();
   }
 
@@ -186,6 +117,21 @@ class PumpSpell implements SpellButton{
   }
 
   @override
+  void handleTapCancel(int pointerId) {
+    // TODO: implement handleTapCancel
+  }
+
+  @override
+  void handleTapDown(int pointerId, TapDownDetails details) {
+    // TODO: implement handleTapDown
+  }
+
+  @override
+  void handleTapUp(int pointerId, TapUpDetails details) {
+    // TODO: implement handleTapUp
+  }
+
+  @override
   bool isHud() {
     // TODO: implement isHud
     throw UnimplementedError();
@@ -208,6 +154,21 @@ class PumpSpell implements SpellButton{
   }
 
   @override
+  void onTapCancel() {
+    // TODO: implement onTapCancel
+  }
+
+  @override
+  void onTapDown(TapDownDetails details) {
+    print('jappuie sur champ');
+  }
+
+  @override
+  void onTapUp(TapUpDetails details) {
+    // TODO: implement onTapUp
+  }
+
+  @override
   void prepareCanvas(Canvas canvas) {
     // TODO: implement prepareCanvas
   }
@@ -221,6 +182,11 @@ class PumpSpell implements SpellButton{
   @override
   void removeEffect(PositionComponentEffect effect) {
     // TODO: implement removeEffect
+  }
+
+  @override
+  void render(Canvas canvas) {
+    fieldSpellSprite.renderRect(canvas, fieldSpellRect);
   }
 
   @override
@@ -249,9 +215,21 @@ class PumpSpell implements SpellButton{
   }
 
   @override
+  Iterable<Tapable> tapableChildren() {
+    // TODO: implement tapableChildren
+    throw UnimplementedError();
+  }
+
+  @override
   Position toPosition() {
     // TODO: implement toPosition
     throw UnimplementedError();
+  }
+
+  @override
+  Rect toRect() {
+    // TODO: implement toRect
+    return fieldSpellRect;
   }
 
   @override
@@ -259,4 +237,10 @@ class PumpSpell implements SpellButton{
     // TODO: implement toSize
     throw UnimplementedError();
   }
+
+  @override
+  void update(double t) {
+    // TODO: implement update
+  }
+
 }

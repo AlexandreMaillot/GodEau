@@ -40,7 +40,7 @@ class RainSpell implements SpellButton{
   RainSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
-    rainSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 5, game.screenSize.height - 85, WIDTH_BUTTON,HEIGHT_BUTTON );
+    rainSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON,HEIGHT_BUTTON );
     rainSpellSprite = Sprite('rainSpellButton.png');
   }
 

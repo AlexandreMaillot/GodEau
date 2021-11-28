@@ -12,7 +12,7 @@ class Wind{
 
   Wind({this.game}){
     windRect = Rect.fromLTWH(game.screenSize.width - game.screenSize.width/13, game.screenSize.height/8, 60, 60);
-    windSprite = Sprite('blackSquare.png');
+    windSprite = Sprite('wind.png');
   }
   void update(double t){
 

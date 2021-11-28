@@ -36,8 +36,8 @@ class WaterTreatmentSpell implements SpellButton{
   WaterTreatmentSpell({@required this.game,int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
-    waterTreatmentSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
-    waterTreatmentSpellSprite = Sprite("sunSpellButton.png");
+    waterTreatmentSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
+    waterTreatmentSpellSprite = Sprite("waterTreatmentMachineSpell.png");
   }
 
   @override

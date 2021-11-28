@@ -39,7 +39,7 @@ class SunSpell implements SpellButton  {
   SunSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
-    sunSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 5, game.screenSize.height - 85, game.screenSize.width * 0.1, game.screenSize.height * 0.2);
+    sunSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, game.screenSize.width * 0.1, game.screenSize.height * 0.2);
     sunSpellSprite = Sprite("sunSpellButton.png");
   }
   @override

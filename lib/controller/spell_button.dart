@@ -5,6 +5,7 @@ import 'package:flame/gestures.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/time.dart';
 import 'package:flutter/material.dart';
+import 'package:godeau/controller/field_spell.dart';
 import 'package:godeau/controller/pump_spell.dart';
 import 'package:godeau/controller/rain_spell.dart';
 import 'package:godeau/controller/sun_spell.dart';
@@ -29,6 +30,7 @@ abstract class SpellButton extends SpriteComponent with Tapable {
       case SpellType.waterPurification : return WaterPurificationSpell(game: game, buttonIndex: buttonIndex);
       case SpellType.waterTreatment : return WaterTreatmentSpell(game: game, buttonIndex: buttonIndex);
       case SpellType.wind : return WindSpell(game: game, buttonIndex: buttonIndex);
+      case SpellType.field : return FieldSpell(game: game, buttonIndex: buttonIndex);
       default : return SunSpell(game: game, buttonIndex: buttonIndex);
     }
   }
@@ -50,4 +52,5 @@ enum SpellType {
   waterPurification,
   waterTreatment,
   wind,
+  field,
 }
