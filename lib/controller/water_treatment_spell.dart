@@ -120,14 +120,20 @@ class WaterTreatmentSpell implements SpellButton{
     if(!state) {
       indexSprite = 1;
       game.environnement.decreaseEcosystemQteFinal(2);
-      if(game.pump.qte > 0){
+      if(game.pump.qte > 0 && game.waterTreatmentMachine.qte != 10){
         game.pump.decreaseWater(5);
         game.waterTreatmentMachine.increaseWater(5);
+      }else{
+        game.environnement.increaseWaterQteFinal(10);
+        game.environnement.increaseEcosystemQteFinal(10);
+        game.resident.updateConsumption(-3);
+        game.waterTreatmentMachine.qte = 0;
       }
 
     } else {
       indexSprite = 0;
       game.resident.updateConsumption(3);
+
     }
     state = !state;
     update(1);
