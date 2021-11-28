@@ -113,6 +113,8 @@ class GodEauGame extends Game with TapDetector{
   @override
   void update(double t) {
     timer.update(t);
+    resident.update(t);
+    farmer.update(t);
   }
 
   @override

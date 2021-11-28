@@ -102,7 +102,7 @@ class WaterPurificationSpell implements SpellButton{
         game.environnement.decreaseWaterQteFinal(5);
       }
     }else {
-      indexSprite = 2;
+      indexSprite = 0;
       if(game.purificationMachine.qte == 10) {
         game.environnement.decreaseEcosystemQteFinal(5);
         game.environnement.decreaseWaterQteFinal(5);

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
+import 'package:flame/time.dart';
 import 'package:godeau/controller/consumer.dart';
 import 'package:godeau/models/god_eau_game.dart';
 
@@ -18,10 +19,16 @@ class Resident implements Consumer {
 
   Rect residentRect;
   Sprite residentSprite;
+  Timer residentTimer;
 
   Resident({this.game}){
     residentRect = Rect.fromLTWH(game.screenSize.width/2.9, game.screenSize.height - game.screenSize.height/2, 90, 90);
     residentSprite = Sprite('resident.png');
+    residentTimer = Timer(5,repeat: true,callback:(){
+      game.environnement.decreaseWaterQteFinal(consumption);
+      game.purificationMachine.increaseWater(2);
+    });
+    residentTimer.start();
   }
 
   @override
@@ -50,7 +57,7 @@ class Resident implements Consumer {
 
   @override
   void update(double t) {
-
+    residentTimer.update(t);
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flame/sprite.dart';
+import 'package:flame/time.dart';
 import 'package:godeau/controller/consumer.dart';
 import 'package:godeau/models/god_eau_game.dart';
 
@@ -18,10 +19,15 @@ class Farmer implements Consumer {
 
   Rect farmerRect;
   Sprite farmerSprite;
+  Timer farmerTimer;
 
   Farmer({this.game}){
     farmerRect = Rect.fromLTWH(game.screenSize.width/2 - game.screenSize.width/20, game.screenSize.height/7, 100, 50);
     farmerSprite = Sprite('field.png');
+    farmerTimer = Timer(5,repeat: true,callback:(){
+      game.environnement.decreaseWaterQteFinal(consumption);
+    });
+    farmerTimer.start();
   }
 
   @override
@@ -50,7 +56,7 @@ class Farmer implements Consumer {
 
   @override
   void update(double t) {
-
+    farmerTimer.update(t);
   }
 
   @override
