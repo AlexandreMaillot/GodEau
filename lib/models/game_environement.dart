@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:godeau/models/end_game.dart';
 
 class GameEnvironnement{
 
@@ -8,6 +9,8 @@ class GameEnvironnement{
   int ecosytemQteStart = 50;
   int ecosystemQteMax = 50;
   int timeLimit = 200;
+  bool haveLose = false;
+  bool haveWin = false;
 
   GameEnvironnement({@required waterQteStart,@required ecosytemQteStart,@required timeLimit}){
     waterQteStart = waterQteStart;
@@ -26,6 +29,7 @@ class GameEnvironnement{
   void decreaseWaterQteFinal(int qte){
     if(waterQteStart - qte <= 0){
       print("lose");
+      haveLose = true;
     } else {
       waterQteStart -= qte;
     }
@@ -42,6 +46,7 @@ class GameEnvironnement{
   void decreaseEcosystemQteFinal(int qte){
     if(ecosytemQteStart - qte <= 0){
       print("lose");
+      haveLose = true;
     } else {
       ecosytemQteStart -= qte;
     }

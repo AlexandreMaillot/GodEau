@@ -25,6 +25,7 @@ import 'package:godeau/models/tree_icon.dart';
 import 'package:godeau/models/water_treatment_machine.dart';
 import 'package:godeau/models/wind.dart';
 import 'cloud.dart';
+import 'end_game.dart';
 import 'farmer.dart';
 import 'game_environement.dart';
 import 'hourglass.dart';
@@ -59,6 +60,7 @@ class GodEauGame extends Game with TapDetector{
   DropletIcon dropletIcon;
   TreeIcon treeIcon;
   HourGlass hourGlass;
+  EndGame endGame;
 
   void initialize() async{
     resize(await Flame.util.initialDimensions());
@@ -85,6 +87,7 @@ class GodEauGame extends Game with TapDetector{
     dropletIcon = DropletIcon(game: this);
     treeIcon = TreeIcon(game: this);
     hourGlass = HourGlass(game: this);
+    endGame = EndGame(game: this,indexSprite: 0);
     qteOfAllelements = TextConfig(
       fontSize: 20,
       fontFamily: 'god_eau_font',
@@ -106,13 +109,22 @@ class GodEauGame extends Game with TapDetector{
   void render(Canvas canvas){
     background.render(canvas);
     map.render(canvas);
-    showAllElements(canvas);
-    // sunSpell.render(canvas);
-    listSpellButton.forEach((spellButton) {
-      spellButton.render(canvas);
-    });
-    showQteOfAllElements(canvas);
-    showAllConsumptions(canvas);
+    if(environnement.haveLose == true){
+      endGame.indexSprite = 0;
+      endGame.render(canvas);
+    }else if(environnement.haveWin == true){
+      endGame.indexSprite = 1;
+      endGame.render(canvas);
+    }else{
+      showAllElements(canvas);
+      // sunSpell.render(canvas);
+      listSpellButton.forEach((spellButton) {
+        spellButton.render(canvas);
+      });
+      showQteOfAllElements(canvas);
+      showAllConsumptions(canvas);
+    }
+
   }
 
   @override
@@ -163,7 +175,6 @@ class GodEauGame extends Game with TapDetector{
     treeIcon.render(canvas);
     hourGlass.render(canvas);
     timeTextConfig.render(canvas,environnement.timeLimit.toString() + ' sec', Position(screenSize.width - screenSize.width/7, screenSize.height/30));
-
   }
 
   void showAllConsumptions(Canvas canvas){
