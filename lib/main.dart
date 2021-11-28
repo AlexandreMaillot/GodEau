@@ -1,6 +1,7 @@
 import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:godeau/views/accueil.dart';
 
 import 'views/home.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      home: Accueil(),
     );
   }
 }
