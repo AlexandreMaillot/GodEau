@@ -26,6 +26,7 @@ import 'package:godeau/models/river.dart';
 import 'package:godeau/models/tree_icon.dart';
 import 'package:godeau/models/water_treatment_machine.dart';
 import 'package:godeau/models/wind.dart';
+import 'package:godeau/views/home.dart';
 import 'cloud.dart';
 import 'end_game.dart';
 import 'farmer.dart';
@@ -130,6 +131,7 @@ class GodEauGame extends Game with TapDetector{
     if(environnement.haveLose == true){
       endGame.indexSprite = 0;
       endGame.render(canvas);
+
     }else if(environnement.haveWin == true){
       endGame.indexSprite = 1;
       endGame.render(canvas);
@@ -148,11 +150,28 @@ class GodEauGame extends Game with TapDetector{
   @override
   void onTap() {
     super.onTap();
+    if(environnement.haveLose) {
+      environnement.haveLose = false;
+      timer.stop();
+      resident.residentTimer.stop();
+      farmer.farmerTimer.stop();
+      listSpellButton.forEach((spellButton) {
+        if(spellButton.state == true){
+          spellButton.timer.stop();
+        }
+      });
+
+    }
+    if(environnement.haveWin) {
+      environnement.haveWin = false;
+      timer.stop();
+    }
   }
   void onTapDown(TapDownDetails d) {
     listSpellButton.forEach((spellButton) {
       if(spellButton.toRect().contains(d.globalPosition)) {
         spellButton.onTapDown(d);
+
       }
     });
 

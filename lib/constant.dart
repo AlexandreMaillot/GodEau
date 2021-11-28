@@ -9,7 +9,9 @@ Color buttonColor = const Color.fromRGBO(99, 195, 217, 0.3);
 List<MenuLevelButton> listMenuLevel = [
   MenuLevelButton(text: "Tutoriel",onPressed: () {
     GameEnvironnement gameEnv = GameEnvironnement(waterQteStart: 100,ecosytemQteStart: 100,timeLimit: 200);
-    GodEauGame game = GodEauGame(gameEnv);
+    final GodEauGame game = GodEauGame(gameEnv);
+    // game.builder.build(game);
+    // game.ov
     runApp(game.widget);
   },),
   MenuLevelButton(text: "Niveau 1",onPressed: () {},),
