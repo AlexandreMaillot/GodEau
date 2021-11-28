@@ -92,6 +92,7 @@ class WindSpell implements SpellButton{
     print(name);
     if(!state) {
       game.wind.isActivated = true;
+      game.cloud.isQteShow = false;
     } else {
       game.wind.isActivated = false;
     }
