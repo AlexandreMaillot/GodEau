@@ -7,6 +7,7 @@ import 'package:flame/effects/effects.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/text_config.dart';
+import 'package:flame/time.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/gestures/tap.dart';
 import 'package:flutter/src/widgets/icon.dart';
@@ -33,7 +34,7 @@ class FieldSpell implements SpellButton{
   Icon icon;
 
   @override
-  int limitTime;
+  int limitTime = 15;
 
   @override
   String name = 'Champ';
@@ -68,12 +69,18 @@ class FieldSpell implements SpellButton{
   Sprite fieldSpellSprite;
   List<Sprite> fieldSpellSprites;
   int indexSprite = 0;
-
+  @override
+  Timer timer;
   FieldSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     fieldSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
     fieldSpellSprites = [Sprite("greyFieldSpell.png"),Sprite("fieldSpellButton.png")];
+    timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
+      game.environnement.decreaseWaterQteFinal(10);
+      game.environnement.decreaseEcosystemQteFinal(10);
+    });
+    timer.start();
   }
 
   @override
@@ -172,6 +179,7 @@ class FieldSpell implements SpellButton{
     }
     state = !state;
     update(1);
+    
   }
 
   @override
@@ -203,7 +211,7 @@ class FieldSpell implements SpellButton{
 
   @override
   void renderDebugMode(Canvas canvas) {
-    // TODO: implement renderDebugMode
+
   }
 
   @override
@@ -252,7 +260,7 @@ class FieldSpell implements SpellButton{
 
   @override
   void update(double t) {
-    // TODO: implement update
+    timer.update(t);
   }
 
 }

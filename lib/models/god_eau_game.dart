@@ -112,9 +112,15 @@ class GodEauGame extends Game with TapDetector{
 
   @override
   void update(double t) {
+    // callTimers(t);
     timer.update(t);
     resident.update(t);
     farmer.update(t);
+    listSpellButton.forEach((spellButton) {
+      if(spellButton.state == true){
+        spellButton.timer.update(t);
+      }
+    });
   }
 
   @override
@@ -192,6 +198,17 @@ class GodEauGame extends Game with TapDetector{
   void showAllConsumptions(Canvas canvas){
     qteOfAllelements.render(canvas,resident.consumption.toString() + '/5sec', Position(screenSize.width/2.7, screenSize.height - screenSize.height/1.85));
     qteOfAllelements.render(canvas,farmer.consumption.toString() + '/5sec', Position(screenSize.width/2, screenSize.height/13));
+  }
+
+  void callTimers(double t){
+    timer.update(t);
+    resident.update(t);
+    farmer.update(t);
+    listSpellButton.forEach((spellButton) {
+      if(spellButton.state == true){
+        spellButton.timer.update(t);
+      }
+    });
   }
 
 }

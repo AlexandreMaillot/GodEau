@@ -23,7 +23,7 @@ class SunSpell implements SpellButton  {
   Icon icon;
 
   @override
-  int limitTime;
+  int limitTime = 15;
 
   @override
   String name = 'Soleil';
@@ -37,12 +37,19 @@ class SunSpell implements SpellButton  {
   Sprite sunSpellSprite;
   List<Sprite> sunSpellSprites;
   int indexSprite = 0;
+  @override
+  Timer timer;
 
   SunSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     sunSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, game.screenSize.width * 0.1, game.screenSize.height * 0.2);
     sunSpellSprites = [Sprite("greySunSpell.png"),Sprite("sunSpellButton.png")];
+    timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
+      game.environnement.decreaseWaterQteFinal(10);
+      game.environnement.decreaseEcosystemQteFinal(10);
+    });
+    timer.start();
   }
   @override
   void onTap() {
@@ -57,7 +64,7 @@ class SunSpell implements SpellButton  {
 
   @override
   void update(double t) {
-
+    timer.update(t);
   }
 
   @override

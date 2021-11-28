@@ -20,7 +20,7 @@ abstract class SpellButton extends SpriteComponent with Tapable {
   String name;
   bool state = false;
   int limitTime = 15;
-
+  Timer timer;
 
   factory SpellButton({@required GodEauGame game,@required SpellType type,@required int buttonIndex}){
     switch(type){

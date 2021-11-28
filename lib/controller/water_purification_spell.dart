@@ -7,6 +7,7 @@ import 'package:flame/effects/effects.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame/text_config.dart';
+import 'package:flame/time.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/icon.dart';
 import 'package:godeau/controller/spell_button.dart';
@@ -19,7 +20,7 @@ class WaterPurificationSpell implements SpellButton{
   Icon icon;
 
   @override
-  int limitTime;
+  int limitTime = 15;
 
   @override
   String name = 'Station épuration';
@@ -33,6 +34,8 @@ class WaterPurificationSpell implements SpellButton{
   Sprite waterPurificationSpellSprite;
   List<Sprite> waterPurificationSpellSprites;
   int indexSprite = 0;
+  @override
+  Timer timer;
 
   WaterPurificationSpell({@required this.game,@required int buttonIndex}){
     WIDTH_BUTTON = game.screenSize.width * 0.1;
@@ -40,6 +43,11 @@ class WaterPurificationSpell implements SpellButton{
     waterPurificationSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON, HEIGHT_BUTTON);
     waterPurificationSpellSprite = Sprite("spellButtonWaterEpuration.png");
     waterPurificationSpellSprites = [Sprite("greyWaterPurificationSpell.png"),Sprite("spellButtonWaterEpuration.png")];
+    timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
+      game.environnement.decreaseWaterQteFinal(10);
+      game.environnement.decreaseEcosystemQteFinal(10);
+    });
+    timer.start();
   }
 
   @override
@@ -50,7 +58,7 @@ class WaterPurificationSpell implements SpellButton{
 
   @override
   void update(double t) {
-
+    timer.update(t);
   }
 
   @override

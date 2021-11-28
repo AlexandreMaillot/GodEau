@@ -23,7 +23,7 @@ class RainSpell implements SpellButton{
   Icon icon;
 
   @override
-  int limitTime;
+  int limitTime = 15;
 
   @override
   String name = 'Pluie';
@@ -38,6 +38,8 @@ class RainSpell implements SpellButton{
   Sprite rainSpellSprite;
   List<Sprite> rainSpellSprites;
   int indexSprite = 0;
+  @override
+  Timer timer;
   final GodEauGame game;
 
   RainSpell({@required this.game,@required int buttonIndex}){
@@ -45,6 +47,11 @@ class RainSpell implements SpellButton{
     HEIGHT_BUTTON = game.screenSize.height * 0.2;
     rainSpellRect = Rect.fromLTWH(buttonIndex * WIDTH_BUTTON + game.screenSize.width / 6.5, game.screenSize.height - 85, WIDTH_BUTTON,HEIGHT_BUTTON );
     rainSpellSprites = [Sprite("greyRainSpell.png"),Sprite("rainSpellButton.png")];
+    timer = Timer(limitTime.toDouble(),repeat: true,callback:(){
+      game.environnement.decreaseWaterQteFinal(10);
+      game.environnement.decreaseEcosystemQteFinal(10);
+    });
+    timer.start();
   }
 
   @override
@@ -60,7 +67,7 @@ class RainSpell implements SpellButton{
 
   @override
   void update(double t) {
-
+    timer.update(t);
   }
 
   @override
